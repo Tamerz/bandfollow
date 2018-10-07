@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.forms import UserCreationForm
 
 
 def home_page(request):
@@ -6,4 +7,5 @@ def home_page(request):
 
 
 def create_account(request):
-    return render(request, 'bands/create_account.html')
+    form = UserCreationForm()
+    return render(request, 'bands/create_account.html', {'form': form})

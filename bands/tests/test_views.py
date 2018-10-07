@@ -1,5 +1,6 @@
 from django.test import TestCase
-from django.contrib.auth.forms import UserCreationForm
+
+from bands.forms import CustomUserCreationForm
 
 
 class HomePageTest(TestCase):
@@ -17,4 +18,4 @@ class UserCreationTest(TestCase):
 
     def test_uses_user_creation_form(self):
         response = self.client.get('/create_account')
-        self.assertIsInstance(response.context['form'], UserCreationForm)
+        self.assertIsInstance(response.context['form'], CustomUserCreationForm)

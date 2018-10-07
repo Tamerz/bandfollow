@@ -4,6 +4,6 @@
 <form>
     {{ form.as_p }}
     {% csrf_token %}
-    <button id="id_submit"></button>
+    <input type="submit" class="form-control" value="Create" id="id_submit">
 </form>
 {% endblock %}

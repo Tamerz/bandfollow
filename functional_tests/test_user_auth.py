@@ -12,6 +12,9 @@ class NewUserTest(FunctionalTest):
         # He sees the name of it is BandFollow
         self.assertIn('BandFollow', self.browser.title)
 
+        # There is also a header with BandFollow
+        self.assertIn('BandFollow', self.browser.find_element_by_tag_name('h1').text)
+
         # There is a link to create an account. He clicks it.
         create_account_link = self.browser.find_element_by_id('id_create_account')
         self.assertEqual(create_account_link.text, 'Create an account...')

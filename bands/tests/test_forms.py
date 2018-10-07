@@ -8,7 +8,8 @@ class CustomUserCreationFormTest(TestCase):
 
     def test_form_has_css_classes(self):
         form = CustomUserCreationForm()
-        self.assertIn('class="form-control"', form.as_p())
+        for item in form:
+            self.assertIn('class="form-control"', str(item))
 
     def test_form_saves_user(self):
         form = CustomUserCreationForm(data={

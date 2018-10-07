@@ -23,8 +23,7 @@ class NewUserTest(FunctionalTest):
 
         # There is a form asking for user details. He fills it out with his information.
         self.browser.find_element_by_id('id_username').send_keys('jjazz')
-        self.browser.find_element_by_id('id_first_name').send_keys('Jimmy')
-        self.browser.find_element_by_id('id_last_name').send_keys('Jazz')
+        self.browser.find_element_by_id('id_name').send_keys('Jimmy Jazz')
         self.browser.find_element_by_id('id_email').send_keys('jimmy.jazz@coolguy.com')
         self.browser.find_element_by_id('id_password1').send_keys('youneverknow8')
         self.browser.find_element_by_id('id_password2').send_keys('youneverknow8')

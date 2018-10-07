@@ -13,11 +13,13 @@ class NewUserTest(FunctionalTest):
         self.assertIn('BandFollow', self.browser.title)
 
         # There is a link to create an account. He clicks it.
-        self.browser.find_element_by_id('id_sign_up').click()
+        create_account_link = self.browser.find_element_by_id('id_create_account')
+        self.assertEqual(create_account_link.text, 'Create an account...')
+        create_account_link.click()
 
         # It takes him to the account creation page
-        sign_up_page = self.browser.current_url
-        self.assertEqual(f'{self.live_server_url}/sign_up', sign_up_page)
+        create_account_page = self.browser.current_url
+        self.assertEqual(f'{self.live_server_url}/create_account', create_account_page)
 
         # There is a form asking for user details. He fills it out with his information.
         self.browser.find_element_by_id('id_username').send_keys('jjazz')

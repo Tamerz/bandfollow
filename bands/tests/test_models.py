@@ -30,7 +30,7 @@ class CustomUserModelTest(TestCase):
     def test_cannot_have_duplicate_email(self):
         user1 = CustomUser()
         user1.username = 'user1'
-        user1.name ='User One'
+        user1.name = 'User One'
         user1.password = 'IAmTheFirstUser'
         user1.email = 'user@domain.com'
         user1.save()

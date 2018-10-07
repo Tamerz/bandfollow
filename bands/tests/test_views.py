@@ -17,5 +17,4 @@ class UserCreationTest(TestCase):
 
     def test_uses_user_creation_form(self):
         response = self.client.get('/create_account')
-        print(response.context)
         self.assertIsInstance(response.context['form'], UserCreationForm)

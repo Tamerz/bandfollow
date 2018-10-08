@@ -33,3 +33,6 @@ class NewUserTest(FunctionalTest):
 
         # He then sees the submit button and clicks it
         self.browser.find_element_by_id('id_submit').click()
+
+        # Since he put in all correct values, it redirects him to the home page
+        self.assertEqual(self.browser.current_url, f'{self.live_server_url}/')

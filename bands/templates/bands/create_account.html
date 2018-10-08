@@ -1,7 +1,7 @@
 {% extends 'bands/base.html' %}
 
 {% block content %}
-<form>
+<form method="post" action="{% url 'create_account' %}">
     {{ form.as_p }}
     {% csrf_token %}
     <input type="submit" class="form-control" value="Create" id="id_submit">

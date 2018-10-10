@@ -3,10 +3,9 @@ version: '3'
 services:
   db:
     image: postgres:10.5
-    ports:
-      - "5432:5432"
     environment:
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: bandfollow
+      POSTGRES_PASSWORD: bandfollow
   web:
     build: .
     command: ["./scripts/wait-for-it.sh", "db:5432", "--", "python3",  "manage.py",  "runserver",  "0.0.0.0:8000"]

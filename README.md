@@ -11,8 +11,8 @@ Create a file to store secrets in the main project folder. Use the below for tes
   "secret_key": "xkqv7i-ec^#a$3i@_#5oci$rzyez!&54(7tf&=r_=4pk13f98*",
   "allowed_hosts": [],
   "database_name": "bandfollow",
-  "database_user": "postgres",
-  "database_password": "postgres",
+  "database_user": "bandfollow",
+  "database_password": "bandfollow",
   "database_host": "db",
   "database_port": "5432",
   "debug": true
@@ -28,6 +28,11 @@ Make sure Docker is installed.
 From a terminal:
 ```
 $ docker-compose up --build
+```
+
+In a new terminal, go into the same directory and run:
+```
+$ docker-compose run web python3 manage.py migrate
 ```
 
 Once it brings up the two machines, you should be able to browse to

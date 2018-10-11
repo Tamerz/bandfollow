@@ -26,8 +26,21 @@ h1, h2, h3, h4 {
     float: right;
 }
 
-.post-form textarea, .post-form input {
-    width: 100%;
+
+.form-control {
+    width: 20%;
+    padding: 15px;
+    margin: auto auto auto 5%;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+    float: center;
+}
+
+.forms {
+    float: center;
+    margin: auto 10% 10% 30%;
+    display: inline-block;
 }
 
 .top-menu, .top-menu:hover, .top-menu:visited {

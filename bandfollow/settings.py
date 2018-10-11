@@ -121,6 +121,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Use our custom user model
+AUTH_USER_MODEL = 'bands.User'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/

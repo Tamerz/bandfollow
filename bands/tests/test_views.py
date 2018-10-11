@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 from bands.forms import CustomUserCreationForm
-from bands.models import CustomUser
+from bands.models import User
 
 
 class HomePageTest(TestCase):
@@ -29,8 +29,8 @@ class UserCreationTest(TestCase):
             'password1': 'youneverknow8',
             'password2': 'youneverknow8'
         })
-        self.assertEqual(CustomUser.objects.count(), 1)
-        new_user = CustomUser.objects.first()
+        self.assertEqual(User.objects.count(), 1)
+        new_user = User.objects.first()
         self.assertEqual(new_user.username, 'jjazz')
         self.assertEqual(new_user.name, 'Jimmy Jazz')
         self.assertEqual(new_user.email, 'jimmy.jazz@coolguy.com')

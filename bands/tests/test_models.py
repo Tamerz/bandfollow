@@ -2,24 +2,24 @@ from django.test import TestCase
 from django.core.exceptions import ValidationError
 from django.db.utils import IntegrityError
 
-from bands.models import CustomUser
+from bands.models import User
 
 
 class CustomUserModelTest(TestCase):
 
     def test_saving_and_retrieving_users(self):
-        user = CustomUser()
+        user = User()
         user.username = 'jjazz'
         user.name = 'Jimmy Jazz'
         user.email = 'jimmy.jazz@coolguy.com'
         user.password = 'youneverknow8'
         user.save()
 
-        new_user = CustomUser.objects.first()
+        new_user = User.objects.first()
         self.assertEqual(user, new_user)
 
     def test_cannot_save_without_email(self):
-        user = CustomUser()
+        user = User()
         user.username = 'jjazz'
         user.name = 'Jimmy Jazz'
         user.password = 'youneverknow8'
@@ -28,7 +28,7 @@ class CustomUserModelTest(TestCase):
             user.full_clean()
 
     def test_cannot_have_duplicate_email(self):
-        user1 = CustomUser()
+        user1 = User()
         user1.username = 'user1'
         user1.name = 'User One'
         user1.password = 'IAmTheFirstUser'
@@ -36,7 +36,7 @@ class CustomUserModelTest(TestCase):
         user1.save()
         user1.full_clean()
 
-        user2 = CustomUser()
+        user2 = User()
         user2.username = 'user2'
         user2.name = 'User Two'
         user2.password = 'IAmTheSecondUser'

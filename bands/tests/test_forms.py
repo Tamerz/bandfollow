@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 from bands.forms import CustomUserCreationForm
-from bands.models import CustomUser
+from bands.models import User
 
 
 class CustomUserCreationFormTest(TestCase):
@@ -20,7 +20,7 @@ class CustomUserCreationFormTest(TestCase):
             'password2': 'youneverknow8'
         })
         new_user = form.save()
-        self.assertEqual(new_user, CustomUser.objects.first())
+        self.assertEqual(new_user, User.objects.first())
         self.assertEqual(new_user.username, 'jjazz')
         self.assertEqual(new_user.name, 'Jimmy Jazz')
         self.assertEqual(new_user.email, 'jimmy.jazz@coolguy.com')

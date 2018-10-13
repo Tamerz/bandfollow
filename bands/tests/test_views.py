@@ -34,3 +34,10 @@ class UserCreationTest(TestCase):
         self.assertEqual(new_user.username, 'jjazz')
         self.assertEqual(new_user.name, 'Jimmy Jazz')
         self.assertEqual(new_user.email, 'jimmy.jazz@coolguy.com')
+
+
+class LoginTest(TestCase):
+
+    def test_uses_login_template(self):
+        response = self.client.get('/login')
+        self.assertTemplateUsed(response, 'bands/login.html')

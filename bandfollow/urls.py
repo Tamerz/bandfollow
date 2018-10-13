@@ -22,5 +22,6 @@ from bands import views as bands_views
 urlpatterns = [
     path('', bands_views.home_page, name='home'),
     path('create_account', bands_views.create_account, name='create_account'),
+    path('login', bands_views.login, name='login'),
     path('admin/', admin.site.urls),
 ]

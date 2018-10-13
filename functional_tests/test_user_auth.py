@@ -36,3 +36,12 @@ class NewUserTest(FunctionalTest):
 
         # Since he put in all correct values, it redirects him to the home page
         self.assertEqual(self.browser.current_url, f'{self.live_server_url}/')
+
+        # Back at the home page, there is a link to log in
+        login_link = self.browser.find_element_by_id('id_login')
+        self.assertEqual(login_link.text, 'Login to an existing account...')
+        login_link.click()
+
+        # He is now at the login page
+        login_page = self.browser.current_url
+        self.assertEqual(f'{self.live_server_url}/login', login_page)

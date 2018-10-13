@@ -3,5 +3,16 @@
 {% block title %}BandFollow - Artists{% endblock %}
 
 {% block content %}
-
+<table id="id_artist_table">
+<thead>
+    <tr>
+        <th>Artist Name</th>
+    </tr>
+</thead>
+<tbody>
+{% for artist in artists %}
+    <tr><td>{{ artist.name }}</td></tr>
+{% endfor %}
+</tbody>
+</table>
 {% endblock %}

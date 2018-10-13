@@ -2,7 +2,7 @@ import os
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 
-from bands.models import User
+from bands.models import User, Artist
 
 
 class FunctionalTest(StaticLiveServerTestCase):
@@ -24,3 +24,9 @@ class FunctionalTest(StaticLiveServerTestCase):
         jimmy.email = 'jimmy.jazz@coolguy.com'
         jimmy.set_password('youneverknow8')
         jimmy.save()
+
+    @staticmethod
+    def add_the_melons():
+        the_melons = Artist()
+        the_melons.name = 'The Melons'
+        the_melons.save()

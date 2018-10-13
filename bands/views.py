@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 
 from bands.forms import CustomUserCreationForm, LoginForm
+from bands.models import Artist
 
 
 def home_page(request):
@@ -25,4 +26,5 @@ def login(request):
 
 
 def artists(request):
-    return render(request, 'bands/artists.html')
+    all_artists = Artist.objects.all()
+    return render(request, 'bands/artists.html', {'artists': all_artists})

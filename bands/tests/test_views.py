@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 from bands.forms import CustomUserCreationForm
-from bands.models import User
+from bands.models import User, Artist
 
 
 class HomePageTest(TestCase):

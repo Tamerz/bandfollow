@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.core.exceptions import ValidationError
 from django.db.utils import IntegrityError
 
-from bands.models import User
+from bands.models import User, Artist
 
 
 class CustomUserModelTest(TestCase):
@@ -44,3 +44,15 @@ class CustomUserModelTest(TestCase):
         with self.assertRaises(IntegrityError):
             user2.save()
             user2.full_clean()
+
+
+class ArtistTest(TestCase):
+
+    def test_saving_and_retrieving_artists(self):
+        artist = Artist()
+        artist.name = 'The Melons'
+        artist.save()
+
+        new_artist = Artist.objects.first()
+
+        self.assertEqual(artist, new_artist)

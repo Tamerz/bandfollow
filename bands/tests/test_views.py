@@ -41,3 +41,10 @@ class LoginTest(TestCase):
     def test_uses_login_template(self):
         response = self.client.get('/login')
         self.assertTemplateUsed(response, 'bands/login.html')
+
+
+class ArtistListTest(TestCase):
+
+    def test_uses_artists_template(self):
+        response = self.client.get('/artists')
+        self.assertTemplateUsed(response, 'bands/artists.html')

@@ -22,3 +22,7 @@ def create_account(request):
 
 def login(request):
     return render(request, 'bands/login.html', {'form': LoginForm})
+
+
+def artists(request):
+    return render(request, 'bands/artists.html')

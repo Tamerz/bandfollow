@@ -17,7 +17,7 @@ class FunctionalTest(StaticLiveServerTestCase):
         self.browser.quit()
 
     @staticmethod
-    def createJimmy():
+    def create_jimmy():
         jimmy = User()
         jimmy.username = 'jjazz'
         jimmy.name = 'Jimmy Jazz'

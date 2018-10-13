@@ -40,7 +40,7 @@ class NewUserTest(FunctionalTest):
     def test_can_login(self):
         # New tests create new databases, so we need to create Jimmy again with
         # a helper method
-        self.createJimmy()
+        self.create_jimmy()
 
         # Back at the home page, there is a link to log in
         self.browser.get(self.live_server_url)

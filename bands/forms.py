@@ -23,7 +23,13 @@ class CustomUserCreationForm(UserCreationForm):
 
 class LoginForm(forms.Form):
 
-    username = forms.CharField(max_length=100)
-    password = forms.CharField(max_length=100, widget=forms.PasswordInput)
+    username = forms.CharField(
+        max_length=100, widget=forms.fields.TextInput(attrs={
+            'class': 'form-control',
+        }))
+    password = forms.CharField(
+        max_length=100, widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+        }))
 
 

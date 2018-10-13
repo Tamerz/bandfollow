@@ -48,3 +48,10 @@ class ArtistListTest(TestCase):
     def test_uses_artists_template(self):
         response = self.client.get('/artists')
         self.assertTemplateUsed(response, 'bands/artists.html')
+
+
+class ArtistCreationTest(TestCase):
+
+    def test_uses_artist_creation_template(self):
+        response = self.client.get('/add_artist')
+        self.assertTemplateUsed(response, 'bands/add_artist.html')

@@ -20,3 +20,11 @@ class ArtistListingTest(FunctionalTest):
         # He sees his favorite band The Melons in the table.
         rows = artist_table.find_elements_by_tag_name('tr')
         self.assertIn('The Melons', [row.text for row in rows])
+
+        # His second favorite band is local and less known, and is not currently in the list
+        rows = artist_table.find_elements_by_tag_name('tr')
+        self.assertNotIn('Big Grant', [row.text for row in rows])
+
+        # He sees a link to "Add an Artist"
+        add_an_artist_link = self.browser.find_element_by_id('id_add_artist')
+        self.assertEqual(add_an_artist_link.text, 'Add a new artist...')

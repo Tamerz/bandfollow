@@ -28,3 +28,7 @@ def login(request):
 def artists(request):
     all_artists = Artist.objects.all()
     return render(request, 'bands/artists.html', {'artists': all_artists})
+
+
+def add_artist(request):
+    return render(request, 'bands/add_artist.html')

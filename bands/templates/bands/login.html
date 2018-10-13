@@ -1,4 +1,6 @@
 {% block title %}Login{% endblock %}
 {% block content %}
-
+    {{ form.as_p }}
+    {% csrf_token %}
+    <input type="submit" class="form-control" value="Login" id="id_submit">
 {% endblock %}

@@ -37,7 +37,13 @@ class NewUserTest(FunctionalTest):
         # Since he put in all correct values, it redirects him to the home page
         self.assertEqual(self.browser.current_url, f'{self.live_server_url}/')
 
+    def test_can_login(self):
+        # New tests create new databases, so we need to create Jimmy again with
+        # a helper method
+        self.createJimmy()
+
         # Back at the home page, there is a link to log in
+        self.browser.get(self.live_server_url)
         login_link = self.browser.find_element_by_id('id_login')
         self.assertEqual(login_link.text, 'Login to an existing account...')
         login_link.click()
@@ -45,3 +51,10 @@ class NewUserTest(FunctionalTest):
         # He is now at the login page
         login_page = self.browser.current_url
         self.assertEqual(f'{self.live_server_url}/login', login_page)
+
+        # There is a login form that he fills out
+        self.browser.find_element_by_id('id_username').send_keys('jjazz')
+        self.browser.find_element_by_id('id_password').send_keys('youneverknow8')
+
+        # He click the login button
+        self.browser.find_element_by_id('id_submit').click()

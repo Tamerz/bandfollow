@@ -3,6 +3,10 @@
 {% block title %}BandFollow{% endblock %}
 
 {% block content %}
-    <a href="{% url 'create_account' %}" id="id_create_account">Create an account...</a>
-    <a href="{% url 'login' %}" id="id_login">Login to an existing account...</a>
+    <p>
+        <a href="{% url 'create_account' %}" id="id_create_account">Create an account...</a>
+    </p>
+    <p>
+        <a href="{% url 'login' %}" id="id_login">Login to an existing account...</a>
+    </p>
 {% endblock %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from bands.forms import CustomUserCreationForm
+from bands.forms import CustomUserCreationForm, LoginForm
 
 
 def home_page(request):
@@ -21,4 +21,4 @@ def create_account(request):
 
 
 def login(request):
-    return render(request, 'bands/login.html')
+    return render(request, 'bands/login.html', {'form': LoginForm})

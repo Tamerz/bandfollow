@@ -1,4 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
+from django import forms
 
 from bands.models import User
 
@@ -18,3 +19,11 @@ class CustomUserCreationForm(UserCreationForm):
         fields = [
             'username', 'name', 'password1', 'password2', 'email'
         ]
+
+
+class LoginForm(forms.Form):
+
+    username = forms.CharField(max_length=100)
+    password = forms.CharField(max_length=100, widget=forms.PasswordInput)
+
+

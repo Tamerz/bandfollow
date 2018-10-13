@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from bands.forms import CustomUserCreationForm
+from bands.forms import CustomUserCreationForm, LoginForm
 from bands.models import User
 
 
@@ -24,3 +24,11 @@ class CustomUserCreationFormTest(TestCase):
         self.assertEqual(new_user.username, 'jjazz')
         self.assertEqual(new_user.name, 'Jimmy Jazz')
         self.assertEqual(new_user.email, 'jimmy.jazz@coolguy.com')
+
+
+class UserLoginFormTest(TestCase):
+
+    def test_form_has_css_classes(self):
+        form = LoginForm()
+        for item in form:
+            self.assertIn('class="form-control"', str(item))

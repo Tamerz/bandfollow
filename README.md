@@ -37,3 +37,8 @@ $ docker-compose run web python3 manage.py migrate
 
 Once it brings up the two machines, you should be able to browse to
 <http://127.0.0.1:8000> on your local machine.
+
+
+Bootstraps elements borrowed from:
+
+*** https://getbootstrap.com/docs/3.3/examples/carousel/

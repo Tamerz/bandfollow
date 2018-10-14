@@ -31,3 +31,10 @@ if [[ $RC != 0 ]]; then
 	echo -e "\n$(info) one or more PEP 8 errors detected, failing build."
 	EXIT=$RC
 fi
+
+# Run unit tests
+python3 manage.py test bands
+RC=$?
+if [[ $RC !=0 ]]; then
+	echo -e "\n$(info) one or more unit tests failed, failing build."
+fi

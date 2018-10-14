@@ -18,7 +18,38 @@
 </head>
 <body>
     <div class="page-header">
-        <h1><a href="/">BandFollow</a></h1>
+        <h1><a href="/index">BandFollow</a></h1>
+    </div>
+    <div class="navbar-wrapper">
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="/index">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/create_account">Sign Up</a></li>
+                    <li><a href="#">Moderator</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-header">More</li>
+                    <li><a href="#">Suggestions?</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                  </ul>
+                </li>
+              </ul>
+        </nav>
+
+      </div>
     </div>
 {% block content %}
 

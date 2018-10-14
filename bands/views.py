@@ -32,3 +32,5 @@ def artists(request):
 
 def add_artist(request):
     return render(request, 'bands/add_artist.html')
+
+

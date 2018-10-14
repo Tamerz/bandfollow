@@ -5,7 +5,7 @@ class ArtistListingTest(FunctionalTest):
 
     def test_can_view_a_list_of_artists(self):
 
-        ## We need to add an artist to the test database first
+        # We need to add an artist to the test database first
         self.add_the_melons()
 
         # Bill doesn't have an account but just wants to browse artists

@@ -6,14 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <!--<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/custom.css' %}">
 
-    <title>{% block title %}{% endblock %}</title>
+
+
+    <title>{% block title %}Bandfollow{% endblock %}</title>
 </head>
 <body>
-<div class="container">
-    <div class="text-center">
-        <h1>BandFollow</h1>
+    <div class="page-header">
+        <h1><a href="/">Bandfollow</a></h1>
+    </div>
+
     </div>
 {% block content %}
 

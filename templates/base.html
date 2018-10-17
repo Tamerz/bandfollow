@@ -19,11 +19,16 @@
 <body>
     <div class="page-header">
         <h1><a href="/">BandFollow</a></h1>
+        {% if user.is_authenticated %}
+            Hello {{ user.username }}! - <a href="{% url 'logout' %}">Log Out</a>
+        {% else %}
+            <a href="{% url 'login' %}">Log in...</a><br/>
+            <a href="{% url 'create_account' %}">Create an account...</a>
+        {% endif %}
     </div>
 {% block content %}
 
 {% endblock %}
-</div>
 <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 </body>
 </html>

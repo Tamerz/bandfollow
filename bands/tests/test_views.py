@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from bands.forms import CustomUserCreationForm
+from bands.forms import CustomUserCreationForm, ArtistCreationForm
 from bands.models import User, Artist
 
 
@@ -55,3 +55,7 @@ class ArtistCreationTest(TestCase):
     def test_uses_artist_creation_template(self):
         response = self.client.get('/add_artist')
         self.assertTemplateUsed(response, 'bands/add_artist.html')
+
+    def test_uses_artist_creation_form(self):
+        response = self.client.get('/add_artist')
+        self.assertIsInstance(response.context['form'], ArtistCreationForm)

@@ -15,9 +15,12 @@ class NewUserTest(FunctionalTest):
         # There is also a header with BandFollow
         self.assertIn('BandFollow', self.browser.find_element_by_tag_name('h1').text)
 
+        # He clicks the account menu button to bring down the options
+        self.browser.find_element_by_id('id_account_menu').click()
+
         # There is a link to create an account. He clicks it.
         create_account_link = self.browser.find_element_by_id('id_create_account')
-        self.assertEqual(create_account_link.text, 'Create an account...')
+        self.assertEqual(create_account_link.text, 'Sign Up')
         create_account_link.click()
 
         # It takes him to the account creation page
@@ -42,15 +45,18 @@ class NewUserTest(FunctionalTest):
         # a helper method
         self.create_jimmy()
 
-        # Back at the home page, there is a link to log in
+        # He goes back to the main site
         self.browser.get(self.live_server_url)
+
+        # He clicks the account menu button to bring down the options
+        self.browser.find_element_by_id('id_account_menu').click()
         login_link = self.browser.find_element_by_id('id_login')
-        self.assertEqual(login_link.text, 'Login to an existing account...')
+        self.assertEqual(login_link.text, 'Login')
         login_link.click()
 
         # He is now at the login page
         login_page = self.browser.current_url
-        self.assertEqual(f'{self.live_server_url}/login', login_page)
+        self.assertEqual(f'{self.live_server_url}/accounts/login/', login_page)
 
         # There is a login form that he fills out
         self.browser.find_element_by_id('id_username').send_keys('jjazz')

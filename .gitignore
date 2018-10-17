@@ -1,6 +1,9 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Python template
 
+# Static root file directory
+/static_root/
+
 # Secrets file
 secrets.json
 

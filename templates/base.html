@@ -4,31 +4,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <!--<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">-->
+    <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{% static 'bootstrap/css/custom.css' %}">
-
-
-
-    <title>{% block title %}BandFollow{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
     <div class="page-header">
-        <h1><a href="/">BandFollow</a></h1>
-        {% if user.is_authenticated %}
-            Hello {{ user.username }}! - <a href="{% url 'logout' %}">Log Out</a>
-        {% else %}
-            <a href="{% url 'login' %}">Log in...</a><br/>
-            <a href="{% url 'create_account' %}">Create an account...</a>
-        {% endif %}
+        <h1><a href="{% url 'home' %}">BandFollow</a></h1>
+    </div>
+    <div class="navbar-wrapper">
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            {% if user.is_authenticated %}
+                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                            {% else %}
+                            <li><a href="{% url 'login' %}">Login</a></li>
+                            <li><a href="{% url 'create_account' %}">Sign Up</a></li>
+                            {% endif %}
+                            {% if user.is_moderator %}
+                            <li><a href="#">Moderator</a></li>
+                            {% endif %}
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">More</li>
+                            <li><a href="#">Suggestions?</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     </div>
 {% block content %}
-
 {% endblock %}
-<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- FOOTER -->
+    <footer class="container">
+            <p class="float-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2018-2019 BandFollow &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous">
+    </script>
 </body>
 </html>

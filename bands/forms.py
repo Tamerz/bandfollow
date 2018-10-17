@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 
-from bands.models import User
+from bands.models import User, Artist
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -31,3 +31,15 @@ class LoginForm(forms.Form):
         max_length=100, widget=forms.PasswordInput(attrs={
             'class': 'form-control',
         }))
+
+
+class ArtistCreationForm(forms.ModelForm):
+
+    name = forms.CharField(
+        max_length=100, widget=forms.fields.TextInput(attrs={
+            'class': 'form-control',
+        }))
+
+    class Meta:
+        model = Artist
+        fields = ['name']

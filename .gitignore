@@ -2,7 +2,7 @@
 ### Python template
 
 # Static file directory
-static/
+/static/
 
 # Secrets file
 secrets.json

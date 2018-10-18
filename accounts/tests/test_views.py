@@ -7,7 +7,7 @@ from accounts.forms import CustomUserCreationForm
 class LoginTest(TestCase):
 
     def test_uses_login_template(self):
-        response = self.client.get('/accounts/login')
+        response = self.client.get('/accounts/login/')
         self.assertTemplateUsed(response, 'accounts/login.html')
 
 

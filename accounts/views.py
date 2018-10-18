@@ -1,9 +1,18 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import logout as auth_logout
 from .forms import LoginForm, CustomUserCreationForm
 
 
 def login(request):
-    return render(request, 'accounts/login.html', {'form': LoginForm()})
+    if request.method == 'POST':
+        return redirect('/')
+    else:
+        return render(request, 'accounts/login.html', {'form': LoginForm()})
+
+
+def logout(request):
+    auth_logout(request)
+    return redirect('/')
 
 
 def create_account(request):

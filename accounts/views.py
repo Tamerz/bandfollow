@@ -1,10 +1,17 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout as auth_logout
+from django.contrib.auth import login as auth_login
+from django.contrib.auth import authenticate
 from .forms import LoginForm, CustomUserCreationForm
 
 
 def login(request):
     if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            auth_login(request, user)
         return redirect('/')
     else:
         return render(request, 'accounts/login.html', {'form': LoginForm()})

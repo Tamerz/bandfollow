@@ -1,8 +1,10 @@
 import os
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from django.contrib.auth import get_user_model
 from selenium import webdriver
 
-from bands.models import User, Artist
+from bands.models import Artist
+User = get_user_model()
 
 
 class FunctionalTest(StaticLiveServerTestCase):

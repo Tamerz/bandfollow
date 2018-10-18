@@ -56,7 +56,7 @@ class NewUserTest(FunctionalTest):
 
         # He is now at the login page
         login_page = self.browser.current_url
-        self.assertEqual(f'{self.live_server_url}/accounts/login/', login_page)
+        self.assertEqual(f'{self.live_server_url}/accounts/login', login_page)
 
         # There is a login form that he fills out
         self.browser.find_element_by_id('id_username').send_keys('jjazz')

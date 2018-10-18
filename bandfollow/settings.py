@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bands.apps.BandsConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -122,7 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Use our custom user model
-AUTH_USER_MODEL = 'bands.User'
+AUTH_USER_MODEL = 'accounts.User'
 
 # Where to send the browser on successful login/logout:
 LOGIN_REDIRECT_URL = 'home'

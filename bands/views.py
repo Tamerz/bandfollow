@@ -10,8 +10,8 @@ def home_page(request):
 
 
 def artists(request):
-    all_artists = Artist.objects.all()
-    return render(request, 'bands/artists.html', {'artists': all_artists})
+    approved_artists = Artist.objects.filter(is_approved=True)
+    return render(request, 'bands/artists.html', {'artists': approved_artists})
 
 
 @login_required

@@ -13,20 +13,9 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 import json
 
+import django_heroku
+
 from django.core.exceptions import ImproperlyConfigured
-
-
-with open('secrets.json') as f:
-    secrets = json.loads(f.read())
-
-
-def get_secret(setting, secrets=secrets):
-    """Get the secret variable or return explicit exception."""
-    try:
-        return secrets[setting]
-    except KeyError:
-        error_message = f'Set the {setting} environment variable'
-        raise ImproperlyConfigured(error_message)
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -37,12 +26,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_secret('secret_key')
+SECRET_KEY = 'xkqv7i-ec^#a$3i@_#5oci$rzyez!&54(7tf&=r_=4pk13f98*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = get_secret('debug')
+DEBUG = True
 
-ALLOWED_HOSTS = get_secret('allowed_hosts')
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -95,11 +84,11 @@ WSGI_APPLICATION = 'bandfollow.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': get_secret('database_name'),
-        'USER': get_secret('database_user'),
-        'PASSWORD': get_secret('database_password'),
-        'HOST': get_secret('database_host'),
-        'PORT': get_secret('database_port')
+        'NAME': 'bandfollow',
+        'USER': 'bandfollow',
+        'PASSWORD': 'bandfollow',
+        'HOST': 'db',
+        'PORT': '5432'
     }
 }
 
@@ -152,3 +141,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+# Heroku configuration
+django_heroku.settings(locals())

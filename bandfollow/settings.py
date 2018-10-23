@@ -87,7 +87,7 @@ DATABASES = {
         'NAME': 'bandfollow',
         'USER': 'bandfollow',
         'PASSWORD': 'bandfollow',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': '5432'
     }
 }

@@ -33,3 +33,10 @@ def create_account(request):
             return render(request, 'accounts/create_account.html', {'form': form})
     else:
         return render(request, 'accounts/create_account.html', {'form': form})
+
+
+def about(request):
+    if request.method == 'POST':
+        return render(request, 'about/about.html')
+    else:
+        return redirect('/')

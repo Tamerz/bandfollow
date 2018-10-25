@@ -18,3 +18,6 @@ def artists(request):
 def add_artist(request):
     form = ArtistCreationForm()
     return render(request, 'bands/add_artist.html', {'form': form})
+
+def about(request):
+    return render(request, 'about/about.html')

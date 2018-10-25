@@ -26,4 +26,5 @@ urlpatterns = [
     path('add_artist', bands_views.add_artist, name='add_artist'),
     path('admin/', admin.site.urls),
     path('accounts/', include(accounts_urls)),
+    path('about/', bands_views.about, name='about'),
 ]

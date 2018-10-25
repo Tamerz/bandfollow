@@ -9,6 +9,11 @@ class HomePageTest(TestCase):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'bands/index.html')
 
+class AboutPageTest(TestCase):
+
+    def test_uses_about_template(self):
+        response = self.client.get('/about')
+        self.assertTemplateUsed(response, 'bands/about.html')
 
 class ArtistListTest(TestCase):
 

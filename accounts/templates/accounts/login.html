@@ -5,6 +5,10 @@
     <form method="post" action="{% url 'login' %}">
     {{ form.as_p }}
     {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}">
     <input type="submit" value="Login" id="id_submit">
+    {% if form.errors %}
+    <div class="alert alert-danger">Invalid username or password. Please try again.</div>
+    {% endif %}
     </form>
 {% endblock %}

@@ -28,6 +28,15 @@ class FunctionalTest(StaticLiveServerTestCase):
         jimmy.save()
 
     @staticmethod
+    def create_bill():
+        bill = User()
+        bill.username = 'bill'
+        bill.name = 'Bill Williamson'
+        bill.email = 'bill@billshats.com'
+        bill.set_password('ILoveHatsDude!')
+        bill.save()
+
+    @staticmethod
     def add_the_melons():
         the_melons = Artist()
         the_melons.name = 'The Melons'

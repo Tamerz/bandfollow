@@ -26,3 +26,10 @@ class ArtistCreationTest(TestCase):
     def test_uses_artist_creation_form(self):
         response = self.client.get('/add_artist')
         self.assertIsInstance(response.context['form'], ArtistCreationForm)
+
+
+class AboutPageTest(TestCase):
+
+    def test_uses_about_template(self):
+        response = self.client.get('/about')
+        self.assertTemplateUsed(response, 'bands/about.html')

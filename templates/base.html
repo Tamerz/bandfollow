@@ -7,7 +7,9 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
@@ -17,7 +19,8 @@
     <div class="navbar-wrapper">
         <nav class="navbar navbar-inverse navbar-static-top">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -28,9 +31,9 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="{% url 'home' %}">Home</a></li>
                     <li><a href="/about">About</a></li>
-                    <li><a href="{% url 'artists' %}">Artists</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="id_account_menu">Account <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false" id="id_account_menu">Account <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             {% if user.is_authenticated %}
                             <li><a href="{% url 'logout' %}" id="id_logout">Logout</a></li>
@@ -47,7 +50,6 @@
                             <li><a href="#">Contact Us</a></li>
                         </ul>
                     </li>
-                    <li><a href="{% url 'home' %}" id="id_username_link">{{ user.username }}</a></li>
                 </ul>
             </div>
         </nav>
@@ -55,10 +57,23 @@
 {% block content %}
 {% endblock %}
 
-    <!-- FOOTER -->
-    <footer class="container">
-            <p class="float-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2018-2019 BandFollow &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    <!-- Footer -->
+    <footer class="w3-center w3-black w3-padding-64">
+        <div class="w3-xlarge w3-section">
+        <h3 class="w3-center">FOLLOW BANDFOLLOW.</h3>
+        <a href="https://www.facebook.com/bandfollow18">
+            <img title="Facebook" alt="Facebook" class="social_media"
+                 src="https://socialmediawidgets.files.wordpress.com/2014/03/02_facebook.png"/>
+        </a>
+            <a href="https://twitter.com/bandfollow1">
+                <img title="Twitter" alt="Twitter" class="social_media"
+                     src="https://socialmediawidgets.files.wordpress.com/2014/03/01_twitter.png"/>
+            </a>
+            <a href="https://www.instagram.com/bandfollow/">
+                <img title="Instagram" alt="Instagram" class="social_media"
+                     src="https://socialmediawidgets.files.wordpress.com/2014/03/10_instagram.png"/>
+            </a>
+        </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

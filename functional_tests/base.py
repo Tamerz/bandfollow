@@ -31,4 +31,5 @@ class FunctionalTest(StaticLiveServerTestCase):
     def add_the_melons():
         the_melons = Artist()
         the_melons.name = 'The Melons'
+        the_melons.is_approved = True
         the_melons.save()

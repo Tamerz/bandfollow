@@ -14,7 +14,7 @@ def login(request):
             auth_login(request, user)
         return redirect('/')
     else:
-        return render(request, 'accounts/../static/registration/login.html', {'form': LoginForm()})
+        return render(request, 'registration/login.html', {'form': LoginForm()})
 
 
 def logout(request):

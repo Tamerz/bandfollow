@@ -1,4 +1,5 @@
 from .base import FunctionalTest
+from selenium.common.exceptions import NoSuchElementException
 
 
 class ArtistListingTest(FunctionalTest):
@@ -28,3 +29,19 @@ class ArtistListingTest(FunctionalTest):
         # He sees a link to "Add an Artist"
         add_an_artist_link = self.browser.find_element_by_id('id_add_artist')
         self.assertEqual(add_an_artist_link.text, 'Add a new artist...')
+
+    def test_can_add_new_artist(self):
+
+        # Bill wants to add a new artist. He goes the add artist page.
+        self.browser.get(f'{self.live_server_url}/add_artist')
+
+        # He has not logged in, so he does not have this ability
+        #self.assertRaises(NoSuchElementException,
+        #                  self.browser.find_element_by_id('id_add_artist_form'))
+
+        # The browser redirects him to log in since he has not yet
+        self.assertEqual(f'{self.live_server_url}/accounts/login/?next=/add_artist',
+                         self.browser.current_url)
+
+        # There is a form to add a new artist.
+

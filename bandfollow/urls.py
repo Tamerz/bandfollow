@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from bands import views as bands_views
-from accounts import urls as accounts_urls
+from accounts import views as accounts_views
 
 
 urlpatterns = [
@@ -25,5 +25,6 @@ urlpatterns = [
     path('artists', bands_views.artists, name='artists'),
     path('add_artist', bands_views.add_artist, name='add_artist'),
     path('admin/', admin.site.urls),
-    path('accounts/', include(accounts_urls)),
+    path('create_account/', accounts_views.create_account, name='create_account'),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]

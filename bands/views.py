@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
 from bands.forms import ArtistCreationForm
@@ -21,4 +21,11 @@ def about(request):
 @login_required
 def add_artist(request):
     form = ArtistCreationForm()
+    if request.method == 'POST':
+        new_artist_form = ArtistCreationForm(data=request.POST)
+        if new_artist_form.is_valid():
+            new_artist_form.save()
+            return redirect(artists)
+        else:
+            return render(request, 'bands/add_artist.html', {'form': form})
     return render(request, 'bands/add_artist.html', {'form': form})

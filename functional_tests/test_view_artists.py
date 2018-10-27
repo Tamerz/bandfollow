@@ -18,12 +18,10 @@ class ArtistListingTest(FunctionalTest):
         artist_table = self.browser.find_element_by_id('id_artist_table')
 
         # He sees his favorite band The Melons in the table.
-        rows = artist_table.find_elements_by_tag_name('tr')
-        self.assertIn('The Melons', [row.text for row in rows])
+        self.wait_for_row_in_table('The Melons')
 
         # His second favorite band is local and less known, and is not currently in the list
-        rows = artist_table.find_elements_by_tag_name('tr')
-        self.assertNotIn('Big Grant', [row.text for row in rows])
+        self.wait_for_row_in_table('Big Grant', inverse=True)
 
         # He sees a link to "Add an Artist"
         add_an_artist_link = self.browser.find_element_by_id('id_add_artist')
@@ -48,3 +46,15 @@ class ArtistListingTest(FunctionalTest):
 
         # There is a form to add a new artist.
         self.browser.find_element_by_id('id_add_artist_form')
+
+        # He enters the name of the artist into the form and clicks submit
+        self.browser.find_element_by_id('id_artist_name').send_keys('Big Grant')
+        self.browser.find_element_by_id('id_submit').click()
+
+        # Since it still needs to be moderated, it doesn't show up in the list of artists yet
+        self.wait_for_row_in_table('Big Grant', inverse=True)
+
+        # We go ahead and mark it as approved and then it should now show up in the list
+        self.mark_artist_approved('Big Grant')
+        self.browser.get(f'{self.live_server_url}/artists/')
+        self.wait_for_row_in_table('Big Grant')

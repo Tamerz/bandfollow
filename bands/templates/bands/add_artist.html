@@ -4,10 +4,9 @@
 
 {% block content %}
     <form id="id_add_artist_form" method="post" action="{% url 'add_artist' %}">
-    <table class="table">
-        {{ form.as_table }}
-    </table>
-    {% csrf_token %}
-    <input type="submit" value="Create" id="id_submit">
+        <label for="id_artist_name">Artist Name:</label>
+        <input type="text" name="name" class="form-control" maxlength="100" required id="id_artist_name">
+        {% csrf_token %}
+        <input type="submit" value="Create" id="id_submit">
     </form>
 {% endblock %}

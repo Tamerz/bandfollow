@@ -15,7 +15,7 @@ class ArtistListingTest(FunctionalTest):
         self.assertEqual(self.browser.title, 'BandFollow - Artists')
 
         # There is a table of artists
-        artist_table = self.browser.find_element_by_id('id_artist_table')
+        self.browser.find_element_by_id('id_list_table')
 
         # He sees his favorite band The Melons in the table.
         self.wait_for_row_in_table('The Melons')

@@ -41,3 +41,10 @@ class AboutPageTest(TestCase):
     def test_uses_about_template(self):
         response = self.client.get('/about/')
         self.assertTemplateUsed(response, 'bands/about.html')
+
+
+class VenueListTest(TestCase):
+
+    def test_uses_venue_template(self):
+        response = self.client.get('/venues/')
+        self.assertTemplateUsed(response, 'bands/venues.html')

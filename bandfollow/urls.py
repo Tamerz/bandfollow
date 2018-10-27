@@ -24,6 +24,8 @@ urlpatterns = [
     path('', bands_views.home_page, name='home'),
     path('artists/', bands_views.artists, name='artists'),
     path('add_artist/', bands_views.add_artist, name='add_artist'),
+    path('venues/', bands_views.venues, name='venues'),
+    path('add_venue/', bands_views.add_venue, name='add_venue'),
     path('about/', bands_views.about, name='about'),
     path('admin/', admin.site.urls),
     path('create_account/', accounts_views.create_account, name='create_account'),

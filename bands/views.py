@@ -29,3 +29,11 @@ def add_artist(request):
         else:
             return render(request, 'bands/add_artist.html', {'form': form})
     return render(request, 'bands/add_artist.html', {'form': form})
+
+
+def venues(request):
+    return render(request, 'bands/venues.html')
+
+
+def add_venue(request):
+    pass

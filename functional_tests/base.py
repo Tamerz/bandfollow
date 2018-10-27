@@ -5,7 +5,7 @@ from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
 import time
 
-from bands.models import Artist
+from bands.models import Artist, Venue
 User = get_user_model()
 
 
@@ -61,9 +61,16 @@ class FunctionalTest(StaticLiveServerTestCase):
         the_melons.is_approved = True
         the_melons.save()
 
+    @staticmethod
+    def add_super_rock_club():
+        super_rock_club = Venue()
+        super_rock_club.name = 'Super Rock Club'
+        super_rock_club.is_approved = True
+        super_rock_club.save()
+
     @wait
     def wait_for_row_in_table(self, row_text, inverse=False):
-        table = self.browser.find_element_by_id('id_artist_table')
+        table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
         if not inverse:
             self.assertIn(row_text, [row.text for row in rows])

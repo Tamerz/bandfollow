@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'style.css' %}">
+    {% block extra_head_tags %}
+    {% endblock %}
 </head>
 <body>
     <div class="page-header">
@@ -49,6 +51,9 @@
                             <li><a href="#">Suggestions?</a></li>
                             <li><a href="#">Contact Us</a></li>
                         </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" id="id_username_link">{{ user.username }}</a>
                     </li>
                 </ul>
             </div>

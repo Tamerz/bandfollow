@@ -9,7 +9,7 @@ class ArtistListingTest(FunctionalTest):
         self.add_the_melons()
 
         # Bill doesn't have an account but just wants to browse artists
-        self.browser.get(f'{self.live_server_url}/artists')
+        self.browser.get(f'{self.live_server_url}/artists/')
 
         # He sees in the title that he is at the Artists page
         self.assertEqual(self.browser.title, 'BandFollow - Artists')
@@ -35,10 +35,10 @@ class ArtistListingTest(FunctionalTest):
         self.create_bill()
 
         # Bill wants to add a new artist. He goes the add artist page.
-        self.browser.get(f'{self.live_server_url}/add_artist')
+        self.browser.get(f'{self.live_server_url}/add_artist/')
 
         # The browser redirects him to log in since he has not yet
-        self.assertEqual(f'{self.live_server_url}/accounts/login/?next=/add_artist',
+        self.assertEqual(f'{self.live_server_url}/accounts/login/?next=/add_artist/',
                          self.browser.current_url)
 
         # He logs in with his account

@@ -2,9 +2,27 @@ import os
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.contrib.auth import get_user_model
 from selenium import webdriver
+from selenium.common.exceptions import WebDriverException
+import time
 
-from bands.models import Artist
+from bands.models import Artist, Venue
 User = get_user_model()
+
+
+MAX_WAIT = 10
+
+
+def wait(fn):
+    def modified_fn(*args, **kwargs):
+        start_time = time.time()
+        while True:
+            try:
+                return fn(*args, **kwargs)
+            except (AssertionError, WebDriverException) as e:
+                if time.time() - start_time > MAX_WAIT:
+                    raise e
+                time.sleep(0.5)
+    return modified_fn
 
 
 class FunctionalTest(StaticLiveServerTestCase):
@@ -42,3 +60,25 @@ class FunctionalTest(StaticLiveServerTestCase):
         the_melons.name = 'The Melons'
         the_melons.is_approved = True
         the_melons.save()
+
+    @staticmethod
+    def add_super_rock_club():
+        super_rock_club = Venue()
+        super_rock_club.name = 'Super Rock Club'
+        super_rock_club.is_approved = True
+        super_rock_club.save()
+
+    @wait
+    def wait_for_row_in_table(self, row_text, inverse=False):
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')
+        if not inverse:
+            self.assertIn(row_text, [row.text for row in rows])
+        else:
+            self.assertNotIn(row_text, [row.text for row in rows])
+
+    @staticmethod
+    def mark_artist_approved(artist_name):
+        artist = Artist.objects.get(name=artist_name)
+        artist.is_approved = True
+        artist.save()

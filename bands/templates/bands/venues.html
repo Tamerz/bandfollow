@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}BandFollow - Venues{% endblock %}
+
+{% block content %}
+    <p><a href="{% url 'add_venue' %}" id="id_add_artist">Add a new venue...</a></p>
+<table id="id_list_table">
+<thead>
+    <tr>
+        <th>Venue Name</th>
+    </tr>
+</thead>
+<tbody>
+{% for venue in venues %}
+    <tr><td>{{ venue.name }}</td></tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

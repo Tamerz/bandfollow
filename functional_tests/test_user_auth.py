@@ -25,7 +25,7 @@ class NewUserTest(FunctionalTest):
 
         # It takes him to the account creation page
         create_account_page = self.browser.current_url
-        self.assertEqual(f'{self.live_server_url}/accounts/create_account/', create_account_page)
+        self.assertEqual(f'{self.live_server_url}/create_account/', create_account_page)
 
         # There is a form asking for user details. He fills it out with his information.
         self.browser.find_element_by_id('id_username').send_keys('jjazz')

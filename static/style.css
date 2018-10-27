@@ -15,7 +15,18 @@
 }
 
 h1, h2, h3, h4 {
-    font-family: 'Lobster', cursive;
+    font-family: "Raleway", 'sans-serif';
+}
+
+body {
+    font-family: "Raleway", 'sans-serif';
+    height: 100%;
+    line-height: 1.8;
+}
+
+html {
+    height: 100%;
+    line-height: 1.8;
 }
 
 .date {
@@ -55,4 +66,27 @@ h1, h2, h3, h4 {
 
 .post h1 a, .post h1 a:visited {
     color: #000000;
+}
+
+
+.egg {
+    width:50%;
+    height: auto;
+}
+
+.w3-container_team {
+    padding:50px 16px;
+}
+
+.w3_container_about {
+    padding:128px 16px;
+}
+
+.w3-row-padding_margin {
+    margin-top:64px;
+}
+
+.social_media{
+    width:55px;
+    height:55px;
 }

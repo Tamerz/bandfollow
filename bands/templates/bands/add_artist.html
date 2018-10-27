@@ -3,7 +3,7 @@
 {% block title %}BandFollow - Add an Artist{% endblock %}
 
 {% block content %}
-    <form method="post" action="{% url 'add_artist' %}">
+    <form id="id_add_artist_form" method="post" action="{% url 'add_artist' %}">
     <table class="table">
         {{ form.as_table }}
     </table>

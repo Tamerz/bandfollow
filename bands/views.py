@@ -14,6 +14,10 @@ def artists(request):
     return render(request, 'bands/artists.html', {'artists': approved_artists})
 
 
+def about(request):
+    return render(request, 'bands/about.html')
+
+
 @login_required
 def add_artist(request):
     form = ArtistCreationForm()

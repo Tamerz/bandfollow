@@ -5,15 +5,15 @@ from .models import Artist, Venue
 
 class ArtistAdmin(admin.ModelAdmin):
 
-    list_display = ['name', 'is_approved', 'submitted_by']
-    fields = ['name', 'is_approved', 'submitted_by']
+    list_display = ['name', 'is_approved']
+    fields = ['name', 'is_approved']
     list_filter = ['is_approved']
 
 
 class VenueAdmin(admin.ModelAdmin):
 
-    list_display = ['name', 'is_approved', 'submitted_by']
-    fields = ['name', 'is_approved', 'submitted_by']
+    list_display = ['name', 'is_approved']
+    fields = ['name', 'is_approved']
     list_filter = ['is_approved']
 
 

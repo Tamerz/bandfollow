@@ -81,13 +81,18 @@ WSGI_APPLICATION = 'bandfollow.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+if 'BANDFOLLOW_LOCAL_DEV' in os.environ:
+    db_host = 'localhost'
+else:
+    db_host = 'db'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'bandfollow',
         'USER': 'bandfollow',
         'PASSWORD': 'bandfollow',
-        'HOST': 'db',
+        'HOST': db_host,
         'PORT': '5432'
     }
 }
@@ -143,4 +148,6 @@ STATICFILES_DIRS = [
 ]
 
 # Heroku configuration
-django_heroku.settings(locals())
+if 'IN_HEROKU' in os.environ:
+    DEBUG = False
+    django_heroku.settings(locals())

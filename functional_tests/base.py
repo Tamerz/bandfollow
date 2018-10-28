@@ -82,3 +82,9 @@ class FunctionalTest(StaticLiveServerTestCase):
         artist = Artist.objects.get(name=artist_name)
         artist.is_approved = True
         artist.save()
+
+    @staticmethod
+    def mark_venue_approved(venue_name):
+        venue = Venue.objects.get(name=venue_name)
+        venue.is_approved = True
+        venue.save()

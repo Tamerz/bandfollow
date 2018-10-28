@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from bands.forms import ArtistCreationForm
-from bands.models import Artist
+from bands.forms import ArtistCreationForm, VenueCreationForm
+from bands.models import Artist, Venue
 
 
 def home_page(request):
@@ -20,20 +20,28 @@ def about(request):
 
 @login_required
 def add_artist(request):
-    form = ArtistCreationForm()
     if request.method == 'POST':
         new_artist_form = ArtistCreationForm(data=request.POST)
         if new_artist_form.is_valid():
             new_artist_form.save()
             return redirect(artists)
         else:
-            return render(request, 'bands/add_artist.html', {'form': form})
-    return render(request, 'bands/add_artist.html', {'form': form})
+            return render(request, 'bands/add_artist.html', {'form': new_artist_form})
+    return render(request, 'bands/add_artist.html', {'form': ArtistCreationForm()})
 
 
 def venues(request):
-    return render(request, 'bands/venues.html')
+    approved_venues = Venue.objects.filter(is_approved=True)
+    return render(request, 'bands/venues.html', {'venues': approved_venues})
 
 
+@login_required
 def add_venue(request):
-    pass
+    if request.method == 'POST':
+        new_venue_form = VenueCreationForm(data=request.POST)
+        if new_venue_form.is_valid():
+            new_venue_form.save()
+            return redirect(venues)
+        else:
+            return render(request, 'bands/add_venue.html', {'form': new_venue_form})
+    return render(request, 'bands/add_venue.html', {'form': VenueCreationForm()})

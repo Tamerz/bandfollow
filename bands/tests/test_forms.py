@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from bands.forms import ArtistCreationForm
+from bands.forms import ArtistCreationForm, VenueCreationForm
 from bands.models import Artist
 
 

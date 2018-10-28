@@ -150,4 +150,5 @@ STATICFILES_DIRS = [
 # Heroku configuration
 if 'IN_HEROKU' in os.environ:
     DEBUG = False
+    SECURE_SSL_REDIRECT = True
     django_heroku.settings(locals())

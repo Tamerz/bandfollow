@@ -31,17 +31,8 @@ class VenueCreationForm(forms.ModelForm):
 
 class EventCreationForm(forms.ModelForm):
 
-    title = forms.CharField(
-        max_length=100, widget=forms.fields.TextInput(attrs={
-            'class': 'form-control',
-        })
-    )
-    date_and_time = forms.DateTimeField(
-        widget=forms.fields.DateTimeInput(attrs={
-            'class': 'form-control',
-        })
-    )
+    date_and_time = forms.DateTimeField(widget=forms.SelectDateWidget())
 
     class Meta:
         model = Event
-        fields = ['title', 'date_and_time']
+        fields = ['title', 'date_and_time', 'venue']

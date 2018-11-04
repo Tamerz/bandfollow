@@ -8,11 +8,15 @@
 <thead>
     <tr>
         <th>Event Name</th>
+        <th>Date</th>
     </tr>
 </thead>
 <tbody>
 {% for event in events %}
-    <tr><td>{{ event.title }}</td></tr>
+    <tr>
+        <td>{{ event.title }}</td>
+        <td>{{ event.date_and_time|date:'F j, Y' }}</td>
+    </tr>
 {% endfor %}
 </tbody>
 </table>

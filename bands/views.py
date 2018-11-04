@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from bands.forms import ArtistCreationForm, VenueCreationForm
+from bands.forms import ArtistCreationForm, VenueCreationForm, EventCreationForm
 from bands.models import Artist, Venue, Event
 
 
@@ -54,4 +54,12 @@ def events(request):
 
 @login_required
 def add_event(request):
-    pass
+    if request.method == 'POST':
+        new_event_form = EventCreationForm(data=request.POST)
+        if new_event_form.is_valid():
+            new_event_form.save()
+            return redirect(events)
+        else:
+            return render(request, 'bands/add_event.html', {'form': new_event_form})
+
+    return render(request, 'bands/add_event.html', {'form': EventCreationForm()})

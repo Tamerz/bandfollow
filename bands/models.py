@@ -17,3 +17,15 @@ class Venue(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Event(models.Model):
+
+    title = models.CharField(max_length=200)
+    date_and_time = models.DateTimeField()
+    is_approved = models.BooleanField(default=False)
+    artists = models.ManyToManyField('Artist')
+    venue = models.ForeignKey('Venue', on_delete=models.PROTECT)
+
+    def __str__(self):
+        return f'{self.date_and_time}: {self.title}'

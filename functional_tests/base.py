@@ -88,3 +88,7 @@ class FunctionalTest(StaticLiveServerTestCase):
         venue = Venue.objects.get(name=venue_name)
         venue.is_approved = True
         venue.save()
+
+    @staticmethod
+    def add_test_events():
+        pass

@@ -48,3 +48,10 @@ class VenueListTest(TestCase):
     def test_uses_venue_template(self):
         response = self.client.get('/venues/')
         self.assertTemplateUsed(response, 'bands/venues.html')
+
+
+class EventListTest(TestCase):
+
+    def test_uses_event_template(self):
+        response = self.client.get('/events/')
+        self.assertTemplateUsed(response, 'bands/events.html')

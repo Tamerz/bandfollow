@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
 from bands.forms import ArtistCreationForm, VenueCreationForm
-from bands.models import Artist, Venue
+from bands.models import Artist, Venue, Event
 
 
 def home_page(request):
@@ -45,3 +45,13 @@ def add_venue(request):
         else:
             return render(request, 'bands/add_venue.html', {'form': new_venue_form})
     return render(request, 'bands/add_venue.html', {'form': VenueCreationForm()})
+
+
+def events(request):
+    approved_events = Event.objects.filter(is_approved=True)
+    return render(request, 'bands/events.html', {'events': approved_events})
+
+
+@login_required
+def add_event(request):
+    pass

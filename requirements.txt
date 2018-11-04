@@ -2,3 +2,4 @@ Django==2.1.2
 psycopg2>=2.7,<2.8 --no-binary psycopg2
 django-heroku==0.3.1
 gunicorn==19.9.0
+django-anymail==4.3

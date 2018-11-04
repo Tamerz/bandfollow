@@ -147,6 +147,14 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+# Email configuration with Mailgun
+ANYMAIL = {
+    'MAILGUN_API_KEY': os.environ.get('MAILGUN_API_KEY'),
+    'MAILGUN_SENDER_DOMAIN': 'mg.bandfollow.com',
+}
+EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
+DEFAULT_FROM_EMAIL = 'BandFollow <no-reply@bandfollow.com>'
+
 # Heroku configuration
 if 'IN_HEROKU' in os.environ:
     DEBUG = False

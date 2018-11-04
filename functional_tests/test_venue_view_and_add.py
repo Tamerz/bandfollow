@@ -11,7 +11,7 @@ class VenueListingTest(FunctionalTest):
         # Bill browses to our site
         self.browser.get(f'{self.live_server_url}')
 
-        # Bill doesn't have an account but just wants to browse venues. He sees a Venues link and clicks it
+        # Bill doesn't have an account but just wants to browse venues. He sees a Venues link and clicks it.
         self.browser.find_element_by_id('id_venues_link').click()
 
         # He sees in the title and URL that he is at the Venues page

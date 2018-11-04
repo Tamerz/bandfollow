@@ -8,11 +8,15 @@ class ArtistListingTest(FunctionalTest):
         # We need to add an artist to the test database first
         self.add_the_melons()
 
-        # Bill doesn't have an account but just wants to browse artists
-        self.browser.get(f'{self.live_server_url}/artists/')
+        # Bill browses to our site
+        self.browser.get(f'{self.live_server_url}')
 
-        # He sees in the title that he is at the Artists page
+        # Bill doesn't have an account but just wants to browse artists. He sees an Artists link and clicks it.
+        self.browser.find_element_by_id('id_artists_link').click()
+
+        # He sees in the title and URL that he is at the Artists page
         self.assertEqual(self.browser.title, 'BandFollow - Artists')
+        self.assertEqual(self.browser.current_url, f'{self.live_server_url}/artists/')
 
         # There is a table of artists
         self.browser.find_element_by_id('id_list_table')

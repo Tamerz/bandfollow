@@ -8,11 +8,15 @@ class VenueListingTest(FunctionalTest):
         # We need to add a venue to the test database first
         self.add_super_rock_club()
 
-        # Bill doesn't have an account but just wants to browse venues
-        self.browser.get(f'{self.live_server_url}/venues/')
+        # Bill browses to our site
+        self.browser.get(f'{self.live_server_url}')
 
-        # He sees in the title that he is at the Venues page
+        # Bill doesn't have an account but just wants to browse venues. He sees a Venues link and clicks it
+        self.browser.find_element_by_id('id_venues_link').click()
+
+        # He sees in the title and URL that he is at the Venues page
         self.assertEqual(self.browser.title, 'BandFollow - Venues')
+        self.assertEqual(self.browser.current_url, f'{self.live_server_url}/venues/')
 
         # There is a table of venues
         self.browser.find_element_by_id('id_list_table')

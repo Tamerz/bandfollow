@@ -48,3 +48,33 @@ class VenueListTest(TestCase):
     def test_uses_venue_template(self):
         response = self.client.get('/venues/')
         self.assertTemplateUsed(response, 'bands/venues.html')
+
+
+class VenueCreationTest(TestCase):
+
+    def setUp(self):
+        # This logs in a test user since this view requires login
+        self.client.force_login(User.objects.get_or_create(username='test_user')[0])
+
+    def test_uses_venue_creation_template(self):
+
+        response = self.client.get('/add_venue/')
+        self.assertTemplateUsed(response, 'bands/add_venue.html')
+
+
+class EventListTest(TestCase):
+
+    def test_uses_event_template(self):
+        response = self.client.get('/events/')
+        self.assertTemplateUsed(response, 'bands/events.html')
+
+
+class EventCreationTest(TestCase):
+
+    def setUp(self):
+        # This logs in a test user since this view requires login
+        self.client.force_login(User.objects.get_or_create(username='test_user')[0])
+
+    def test_uses_event_creation_template(self):
+        response = self.client.get('/add_event/')
+        self.assertTemplateUsed(response, 'bands/add_event.html')

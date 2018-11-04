@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}BandFollow - Events{% endblock %}
+
+{% block content %}
+    <p><a href="{% url 'add_event' %}" id="id_add_venue">Add a new event...</a></p>
+<table id="id_list_table">
+<thead>
+    <tr>
+        <th>Event Name</th>
+        <th>Date</th>
+    </tr>
+</thead>
+<tbody>
+{% for event in events %}
+    <tr>
+        <td>{{ event.title }}</td>
+        <td>{{ event.date_and_time|date:'F j, Y' }}</td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

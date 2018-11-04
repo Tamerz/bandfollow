@@ -1,11 +1,13 @@
 import os
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.contrib.auth import get_user_model
+from django.utils import timezone
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
 import time
+from datetime import datetime
 
-from bands.models import Artist, Venue
+from bands.models import Artist, Venue, Event
 User = get_user_model()
 
 
@@ -88,3 +90,18 @@ class FunctionalTest(StaticLiveServerTestCase):
         venue = Venue.objects.get(name=venue_name)
         venue.is_approved = True
         venue.save()
+
+    @staticmethod
+    def add_test_event():
+        FunctionalTest.add_super_rock_club()
+        FunctionalTest.add_the_melons()
+        artist = Artist.objects.get(name='The Melons')
+        venue = Venue.objects.get(name='Super Rock Club')
+        event = Event()
+        event.date_and_time = datetime(2019, 3, 22, 18, 30, tzinfo=timezone.utc)
+        event.title = 'Big Night Out!'
+        event.venue = venue
+        event.save()
+        event.artists.add(artist)
+        event.is_approved = True
+        event.save()

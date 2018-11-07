@@ -5,11 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'style.css' %}">
     {% block extra_head_tags %}
     {% endblock %}
@@ -18,76 +17,68 @@
     <div class="page-header">
         <h1><a href="{% url 'home' %}">BandFollow</a></h1>
     </div>
+
+    <!--This is the navbar. Edit this to change global nav bar for bandfollow.-->
     <div class="navbar-wrapper">
-        <nav class="navbar navbar-inverse navbar-static-top">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                        aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="{% url 'home' %}">Home</a></li>
-                    <li><a href="{% url 'about' %}">About</a></li>
-                    <li class="dropdown">
-                        <a id="id_artists_link" href="{% url 'artists' %}">Artists</a>
-                    </li>
-                    <li class="dropdown">
-                        <a id="id_venues_link" href="{% url 'venues' %}">Venues</a>
-                    </li>
-                    <li class="dropdown">
-                        <a id="id_events_link" href="{% url 'events' %}">Events</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false" id="id_account_menu">Account <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            {% if user.is_authenticated %}
-                            <li><a href="{% url 'logout' %}" id="id_logout">Logout</a></li>
-                            {% else %}
-                            <li><a href="{% url 'login' %}" id="id_login">Login</a></li>
-                            <li><a href="{% url 'create_account' %}" id="id_create_account">Sign Up</a></li>
-                            {% endif %}
-                            {% if user.is_moderator %}
-                            <li><a href="#">Moderator</a></li>
-                            {% endif %}
-                            <li role="separator" class="divider"></li>
-                            <li class="dropdown-header">More</li>
-                            <li><a href="#">Suggestions?</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" id="id_username_link">{{ user.username }}</a>
-                    </li>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'add_artist' %}">Artists <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li>
+                    <a class="nav-link" href="{% url 'add_venue' %}">Venues <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li>
+                    <a class="nav-link" href="{% url 'add_event' %}">Events <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      More
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      {% if user.is_authenticated %}
+                          <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                          <a class="dropdown-item" href="admin">Admin</a>
+                      {% else %}
+                          <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                          <a class="dropdown-item" href="create_account">Sign Up</a>
+                      {% endif %}
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="{% url 'about' %}">About</a>
+                      {% if user.is_moderator %}
+                      <a class="dropdown-item" href="#">Moderator</a>
+                      {% endif %}
+                    </div>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link disabled" href="#" id="id_username_link">{{ user.username }}</a>
+                  </li>
                 </ul>
-            </div>
-        </nav>
+                <form class="form-inline my-2 my-lg-0">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+              </div>
+            </nav>
     </div>
 {% block content %}
 {% endblock %}
 
     <!-- Footer -->
-    <footer class="w3-center w3-black w3-padding-64">
-        <div class="w3-xlarge w3-section">
-        <h3 class="w3-center">FOLLOW BANDFOLLOW.</h3>
-        <a href="https://www.facebook.com/bandfollow18">
-            <img title="Facebook" alt="Facebook" class="social_media"
-                 src="https://socialmediawidgets.files.wordpress.com/2014/03/02_facebook.png"/>
-        </a>
-            <a href="https://twitter.com/bandfollow1">
-                <img title="Twitter" alt="Twitter" class="social_media"
-                     src="https://socialmediawidgets.files.wordpress.com/2014/03/01_twitter.png"/>
-            </a>
-            <a href="https://www.instagram.com/bandfollow/">
-                <img title="Instagram" alt="Instagram" class="social_media"
-                     src="https://socialmediawidgets.files.wordpress.com/2014/03/10_instagram.png"/>
-            </a>
+    <footer class="container">
+        <div class="social">
+        <a href="https://www.facebook.com/bandfollow18">Facebook</a>
+            <a href="https://twitter.com/bandfollow1">Twitter</a>
+            <a href="https://www.instagram.com/bandfollow/">Instagram</a>
         </div>
+        <div class="float-right">© 2018 BandFollow, Inc. </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

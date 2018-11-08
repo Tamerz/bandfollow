@@ -1,4 +1,7 @@
 from django import forms
+from django.urls import reverse
+from crispy_forms.layout import Submit
+from crispy_forms.helper import FormHelper
 
 from bands.models import Artist, Venue, Event
 
@@ -31,8 +34,15 @@ class VenueCreationForm(forms.ModelForm):
 
 class EventCreationForm(forms.ModelForm):
 
-    date_and_time = forms.DateTimeField(widget=forms.SelectDateWidget())
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.helper = FormHelper()
+        self.helper.form_id = 'id_add_event_form'
+        self.helper.form_method = 'post'
+        self.helper.form_action = reverse('add_event')
+        self.helper.add_input(Submit('submit', 'Submit'))
 
     class Meta:
         model = Event
-        fields = ['title', 'date_and_time', 'venue']
+        fields = ['title', 'date_and_time', 'venue', 'artists']

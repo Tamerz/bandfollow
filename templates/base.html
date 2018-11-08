@@ -11,74 +11,80 @@
     {% endblock %}
 </head>
 <body>
-    <div class="page-header">
-        <h1><a href="{% url 'home' %}">BandFollow</a></h1>
-    </div>
+<div class="page-header">
+    <h1><a href="{% url 'home' %}">BandFollow</a></h1>
+</div>
 
-    <!--This is the navbar. Edit this to change global nav bar for bandfollow.-->
-    <div class="navbar-wrapper">
+<!--This is the navbar. Edit this to change global nav bar for bandfollow.-->
+<div class="navbar-wrapper">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-              <a class="navbar-brand" href="{% url 'home' %}">Home</a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'add_artist' %}">Artists <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li>
-                    <a class="nav-link" href="{% url 'add_venue' %}">Venues <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li>
-                    <a class="nav-link" href="{% url 'add_event' %}">Events <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      More
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      {% if user.is_authenticated %}
-                          <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-                          <a class="dropdown-item" href="admin">Admin</a>
-                      {% else %}
-                          <a class="dropdown-item" href="{% url 'login' %}">Login</a>
-                          <a class="dropdown-item" href="create_account">Sign Up</a>
-                      {% endif %}
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="{% url 'about' %}">About</a>
-                      {% if user.is_moderator %}
-                      <a class="dropdown-item" href="#">Moderator</a>
-                      {% endif %}
-                    </div>
-                  </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'add_artist' %}">Artists <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'add_venue' %}">Venues <span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'add_event' %}">Events <span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            More
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% if user.is_authenticated %}
+                                <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                                <a class="dropdown-item" href="admin">Admin</a>
+                            {% else %}
+                                <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                                <a class="dropdown-item" href="{% url 'create_account' %}">Sign Up</a>
+                            {% endif %}
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'about' %}">About</a>
+                            {% if user.is_moderator %}
+                                <a class="dropdown-item" href="#">Moderator</a>
+                            {% endif %}
+                        </div>
+                    </li>
 
-                  <li class="nav-item">
-                    <a class="nav-link disabled" href="#" id="id_username_link">{{ user.username }}</a>
-                  </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" id="id_username_link">{{ user.username }}</a>
+                    </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
-              </div>
-            </nav>
-    </div>
+            </div>
+        </nav>
+    </nav>
+</div>
+<div class="container">
 {% block content %}
 {% endblock %}
-
-    <!-- Footer -->
-    <footer class="container">
-        <div class="social">
+</div>
+<!-- Footer -->
+<footer class="container">
+    <div class="social">
         <a href="https://www.facebook.com/bandfollow18">Facebook</a>
-            <a href="https://twitter.com/bandfollow1">Twitter</a>
-            <a href="https://www.instagram.com/bandfollow/">Instagram</a>
-        </div>
-        <div class="float-right">© 2018 BandFollow, Inc. </div>
-    </footer>
-    <script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
-    <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <a href="https://twitter.com/bandfollow1">Twitter</a>
+        <a href="https://www.instagram.com/bandfollow/">Instagram</a>
+    </div>
+    <div class="float-right">© 2018 BandFollow, Inc.</div>
+</footer>
+<script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 </html>

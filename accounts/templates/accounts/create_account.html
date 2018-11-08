@@ -1,13 +1,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="forms">
     <form method="post" action="{% url 'create_account' %}">
-        <table class="table">
-            {{ form.as_table }}
-        </table>
+        <div class="form-group">
+            <label for="id_username">Username:</label>
+            <input type="text" name="username" maxlength="150" autofocus class="form-control" required id="id_username">
+        </div>
+        <div class="form-group">
+            <label for="id_name">Name:</label>
+            <input type="text" name="name" maxlength="150" class="form-control" required id="id_name">
+        </div>
+        <div class="form-group">
+            <label for="id_password1">Password:</label>
+            <input type="password" name="password1" class="form-control" required id="id_password1">
+        </div>
+        <div class="form-group">
+            <label for="id_password2">Password Confirmation:</label>
+            <input type="password" name="password2" class="form-control" required id="id_password2">
+        </div>
+        <div class="form-group">
+            <label for="id_email">Email Address:</label>
+            <input type="email" name="email" maxlength="100" class="form-control" required id="id_email">
+        </div>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <div class="form-group">
+            {% if form.errors %}
+                <div class="alert alert-danger">{{ form.error_messages }}</div>
+            {% endif %}
+        </div>
         {% csrf_token %}
-        <input type="submit" value="Create" id="id_submit">
     </form>
-</div>
 {% endblock %}

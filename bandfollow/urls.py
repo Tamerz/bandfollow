@@ -23,6 +23,7 @@ from accounts import views as accounts_views
 urlpatterns = [
     path('', bands_views.home_page, name='home'),
     path('artists/', bands_views.artists, name='artists'),
+    path('artists/<str:name>', bands_views.artist_detail, name='artist_detail'),
     path('add_artist/', bands_views.add_artist, name='add_artist'),
     path('venues/', bands_views.venues, name='venues'),
     path('add_venue/', bands_views.add_venue, name='add_venue'),

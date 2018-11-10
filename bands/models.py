@@ -9,6 +9,10 @@ class Artist(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'artist'
+        verbose_name_plural = 'artists'
+
 
 class Venue(models.Model):
 
@@ -17,6 +21,10 @@ class Venue(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'venue'
+        verbose_name_plural = 'venues'
 
 
 class Event(models.Model):
@@ -29,3 +37,7 @@ class Event(models.Model):
 
     def __str__(self):
         return f'{self.date_and_time}: {self.title}'
+
+    class Meta:
+        verbose_name = 'event'
+        verbose_name_plural = 'events'

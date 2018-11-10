@@ -4,16 +4,18 @@
 
 {% block content %}
     <p><a href="{% url 'add_artist' %}" id="id_add_artist">Add a new artist...</a></p>
-<table id="id_list_table">
-<thead>
-    <tr>
-        <th>Artist Name</th>
-    </tr>
-</thead>
-<tbody>
-{% for artist in artists %}
-    <tr><td>{{ artist.name }}</td></tr>
-{% endfor %}
-</tbody>
-</table>
+    <table id="id_list_table">
+        <thead>
+        <tr>
+            <th>Artist Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for artist in artists %}
+            <tr>
+                <td><a href="{% url 'artist_detail' artist.name %}" id="id_artist_name">{{ artist.name }}</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

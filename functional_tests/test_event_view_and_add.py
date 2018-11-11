@@ -18,7 +18,7 @@ class EventListingTest(FunctionalTest):
         self.browser.find_element_by_id('id_list_table')
 
         # He sees the 'Big Night Out!' event in the table
-        self.wait_for_row_in_table('Big Night Out! March 22, 2019')
+        self.wait_for_row_in_table('Big Night Out! Super Rock Club March 22, 2019')
 
     def test_can_create_a_new_event(self):
 

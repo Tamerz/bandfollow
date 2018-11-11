@@ -85,8 +85,8 @@ class ArtistListingTest(FunctionalTest):
         self.browser.find_element_by_id('id_artist_name').click()
 
         # He sees in the title and URL that he is at the page for "The Melons"
-        self.assertEqual(self.browser.title, 'BandFollow - The Melons')
-        self.assertEqual(self.browser.current_url, f'{self.live_server_url}/artists/The Melons')
+        self.assertEqual('BandFollow - The Melons', self.browser.title)
+        self.assertEqual(f'{self.live_server_url}/artists/The%20Melons', self.browser.current_url)
 
         # The name of the artist is in the header
         self.browser.find_element_by_id('id_artist_name')

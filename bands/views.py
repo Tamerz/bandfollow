@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 
 from bands.forms import ArtistCreationForm, VenueCreationForm, EventCreationForm
@@ -12,6 +12,11 @@ def home_page(request):
 def artists(request):
     approved_artists = Artist.objects.filter(is_approved=True)
     return render(request, 'bands/artists.html', {'artists': approved_artists})
+
+
+def artist_detail(request, name):
+    artist = get_object_or_404(Artist, name=name)
+    return render(request, 'bands/artist_detail.html', {'artists': artist})
 
 
 def about(request):

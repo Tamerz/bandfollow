@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}BandFollow - {{ artists.name }} {% endblock %}
+
+{% block content %}
+    <p><a href="{% url 'artists' %}" id="id_artist_list">Go back to artist list</a></p>
+    <h1 id="id_artist_name">{{ artists.name }}</h1>
+
+{% endblock %}

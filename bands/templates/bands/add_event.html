@@ -5,14 +5,19 @@
 {% block title %}BandFollow - Add an Event{% endblock %}
 {% block extra_head_tags %}
     <link rel="stylesheet" href="{% static 'css/flatpickr.min.css' %}">
-    <script src="{% static 'js/flatpickr.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/multi-select.dist.css' %}">
 {% endblock %}
 
 {% block content %}
     <div class="container">
     {% crispy form %}
     </div>
+{% endblock %}
+{% block extra_scripts %}
+    <script src="{% static 'js/flatpickr.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.multi-select.js' %}"></script>
     <script type="text/javascript">
-    flatpickr("#id_date_and_time", {enableTime: true, minDate: "today"})
+        flatpickr("#id_date_and_time", {enableTime: true, minDate: "today"});
+        $('#id_artists').multiSelect();
     </script>
 {% endblock %}

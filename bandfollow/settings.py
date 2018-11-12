@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'bands.apps.BandsConfig',
     'accounts.apps.AccountsConfig',
 ]
@@ -146,6 +147,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+# Crispy Forms Settings
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Email configuration with Mailgun
 ANYMAIL = {

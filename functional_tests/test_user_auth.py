@@ -15,8 +15,8 @@ class NewUserTest(FunctionalTest):
         # There is also a header with BandFollow
         self.assertIn('BandFollow', self.browser.find_element_by_tag_name('h1').text)
 
-        # He clicks the account menu button to bring down the options
-        self.browser.find_element_by_id('id_account_menu').click()
+        # He clicks the 'More' menu button to bring down the options
+        self.browser.find_element_by_id('navbarDropdown').click()
 
         # There is a link to create an account. He clicks it.
         create_account_link = self.browser.find_element_by_id('id_create_account')
@@ -49,7 +49,7 @@ class NewUserTest(FunctionalTest):
         self.browser.get(self.live_server_url)
 
         # He clicks the account menu button to bring down the options
-        self.browser.find_element_by_id('id_account_menu').click()
+        self.browser.find_element_by_id('navbarDropdown').click()
         login_link = self.browser.find_element_by_id('id_login')
         self.assertEqual(login_link.text, 'Login')
         login_link.click()

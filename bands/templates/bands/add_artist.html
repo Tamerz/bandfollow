@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block title %}BandFollow - Add an Artist{% endblock %}
 
 {% block content %}
-    <form id="id_add_artist_form" method="post" action="{% url 'add_artist' %}">
-        <label for="id_artist_name">Artist Name:</label>
-        <input type="text" name="name" class="form-control" maxlength="100" required id="id_artist_name">
-        {% csrf_token %}
-        <input type="submit" value="Create" id="id_submit">
-    </form>
+    <div class="container">
+        {% crispy form %}
+    </div>
 {% endblock %}

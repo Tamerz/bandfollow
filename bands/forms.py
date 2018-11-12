@@ -14,7 +14,7 @@ class ArtistCreationForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.form_id = 'id_add_artist_form'
         self.helper.form_method = 'post'
-        self.helper.form_action = reverse('add_event')
+        self.helper.form_action = reverse('add_artist')
         self.helper.add_input(Submit('submit', 'Submit'))
 
     class Meta:

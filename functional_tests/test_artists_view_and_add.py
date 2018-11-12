@@ -50,8 +50,8 @@ class ArtistListingTest(FunctionalTest):
         self.browser.find_element_by_id('id_add_artist_form')
 
         # He enters the name of the artist into the form and clicks submit
-        self.browser.find_element_by_id('id_artist_name').send_keys('Big Grant')
-        self.browser.find_element_by_id('id_submit').click()
+        self.browser.find_element_by_id('id_name').send_keys('Big Grant')
+        self.browser.find_element_by_id('submit-id-submit').click()
 
         # Since it still needs to be moderated, it doesn't show up in the list of artists yet
         self.wait_for_row_in_table('Big Grant', inverse=True)

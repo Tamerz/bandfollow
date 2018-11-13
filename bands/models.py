@@ -5,6 +5,7 @@ class Artist(models.Model):
 
     name = models.CharField(max_length=200)
     is_approved = models.BooleanField(default=False)
+    website = models.URLField(blank=True)
 
     def __str__(self):
         return self.name
@@ -18,6 +19,7 @@ class Venue(models.Model):
 
     name = models.CharField(max_length=200)
     is_approved = models.BooleanField(default=False)
+    website = models.URLField(blank=True)
 
     def __str__(self):
         return self.name

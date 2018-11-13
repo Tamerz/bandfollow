@@ -52,8 +52,8 @@ class VenueListingTest(FunctionalTest):
         self.browser.find_element_by_id('id_add_venue_form')
 
         # He enters the name of the venue into the form and clicks submit
-        self.browser.find_element_by_id('id_venue_name').send_keys('Little Jazz Room')
-        self.browser.find_element_by_id('id_submit').click()
+        self.browser.find_element_by_id('id_name').send_keys('Little Jazz Room')
+        self.browser.find_element_by_id('submit-id-submit').click()
 
         # Since it still needs to be moderated, it doesn't show up in the list of artists yet
         self.wait_for_row_in_table('Little Jazz Room', inverse=True)

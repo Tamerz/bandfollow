@@ -1,17 +1,21 @@
 from django import forms
+from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
+from crispy_forms.layout import Submit
+from crispy_forms.helper import FormHelper
 
 
 class CustomUserCreationForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['username'].widget.attrs['class'] = 'form-control'
-        self.fields['name'].widget.attrs['class'] = 'form-control'
-        self.fields['password1'].widget.attrs['class'] = 'form-control'
-        self.fields['password2'].widget.attrs['class'] = 'form-control'
-        self.fields['email'].widget.attrs['class'] = 'form-control'
+
+        self.helper = FormHelper()
+        self.helper.form_id = 'id_create_user_form'
+        self.helper.form_method = 'post'
+        self.helper.form_action = reverse('create_account')
+        self.helper.add_input(Submit('submit', 'Sign Up'))
 
     class Meta:
         model = get_user_model()

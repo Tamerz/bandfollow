@@ -65,6 +65,7 @@
                 </form>
               </div>
             </nav>
+        </nav>
     </div>
 {% block content %}
 {% endblock %}
@@ -81,5 +82,7 @@
     <script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    {% block extra_scripts %}
+    {% endblock %}
 </body>
 </html>

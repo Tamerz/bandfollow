@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block title %}BandFollow - Add a Venue{% endblock %}
 
 {% block content %}
-    <form id="id_add_venue_form" method="post" action="{% url 'add_venue' %}">
-        <label for="id_venue_name">Venue Name:</label>
-        <input type="text" name="name" class="form-control" maxlength="100" required id="id_venue_name">
-        {% csrf_token %}
-        <input type="submit" value="Create" id="id_submit">
-    </form>
+    <div class="container">
+    {% crispy form %}
+    </div>
 {% endblock %}

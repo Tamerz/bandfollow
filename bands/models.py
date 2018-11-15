@@ -56,6 +56,10 @@ class Event(models.Model):
     artists = models.ManyToManyField('Artist')
     venue = models.ForeignKey('Venue', on_delete=models.PROTECT)
 
+    @property
+    def artist_list(self):
+        return ','.join([artist.name for artist in self.artists.all()])
+
     def __str__(self):
         return f'{self.date_and_time}: {self.title}'
 

@@ -3,26 +3,31 @@
 {% block title %}BandFollow - {{ artist.name }} {% endblock %}
 
 {% block content %}
-    <p><a href="{% url 'artists' %}" id="id_artist_list">Go back to artist list</a></p>
-    <h1 id="id_artist_name">{{ artist.name }}</h1>
-
     <div class="container">
-    <h2>Upcoming Events</h2>
-    <table id="id_event_table" class="table">
-        <thead>
-        <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Venue</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for event in artist.event_set.all %}
-        <tr>
-            <td>{{ event.date_and_time }}</td>
-            <td>{{ event.venue }}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <p><a href="{% url 'artists' %}" id="id_artist_list">Go back to artist list</a></p>
+        <h1 id="id_artist_name">{{ artist.name }}</h1>
+        {% if artist.website %}
+            <p>Website: <a href="{{ artist.website }}" target="_blank">{{ artist.website }}</a></p>
+        {% endif %}
+
+        <div class="container">
+            <h2>Upcoming Events</h2>
+            <table id="id_event_table" class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Venue</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for event in artist.event_set.all %}
+                    <tr>
+                        <td>{{ event.date_and_time }}</td>
+                        <td>{{ event.venue }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 {% endblock %}

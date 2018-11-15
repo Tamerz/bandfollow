@@ -15,13 +15,15 @@
             <table id="id_event_table" class="table">
                 <thead>
                 <tr>
+                    <th scope="col">Title</th>
                     <th scope="col">Date</th>
                     <th scope="col">Artists</th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for event in events %}
+                {% for event in venue.event_set.all %}
                     <tr>
+                        <td><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></td>
                         <td>{{ event.date_and_time }}</td>
                         <td>{{ event.artist_list }}</td>
                     </tr>

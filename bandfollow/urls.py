@@ -29,6 +29,7 @@ urlpatterns = [
     path('venues/<str:name>', bands_views.venue_detail, name='venue_detail'),
     path('add_venue/', bands_views.add_venue, name='add_venue'),
     path('events/', bands_views.events, name='events'),
+    path('event_detail/<int:id>', bands_views.event_detail, name='event_detail'),
     path('add_event/', bands_views.add_event, name='add_event'),
     path('about/', bands_views.about, name='about'),
     path('admin/', admin.site.urls),

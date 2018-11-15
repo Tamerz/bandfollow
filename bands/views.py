@@ -62,6 +62,11 @@ def events(request):
     return render(request, 'bands/events.html', {'events': approved_events})
 
 
+def event_detail(request, id):
+    event = get_object_or_404(Event, id=id)
+    return render(request, 'bands/event_detail.html', {'event': event})
+
+
 @login_required
 def add_event(request):
     if request.method == 'POST':

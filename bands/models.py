@@ -60,6 +60,9 @@ class Event(models.Model):
     def artist_list(self):
         return ','.join([artist.name for artist in self.artists.all()])
 
+    def get_absolute_url(self):
+        return reverse('event_detail', args=[str(self.id)])
+
     def __str__(self):
         return f'{self.date_and_time}: {self.title}'
 

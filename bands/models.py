@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.urls import reverse
 
 
 class User(AbstractUser):
@@ -18,6 +19,9 @@ class Artist(models.Model):
     name = models.CharField(max_length=200)
     is_approved = models.BooleanField(default=False)
     website = models.URLField(blank=True)
+
+    def get_absolute_url(self):
+        return reverse('artist_detail', args=[str(self.name)])
 
     def __str__(self):
         return self.name

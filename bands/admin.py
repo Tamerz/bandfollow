@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Artist, Venue, Event
+from .models import User, Artist, Venue, Event
 
 
 def approve_artist(modeladmin, request, queryset):
@@ -42,12 +42,13 @@ class VenueAdmin(admin.ModelAdmin):
 
 class EventAdmin(admin.ModelAdmin):
 
-    list_display = ['title', 'date_and_time', 'is_approved']
+    list_display = ['title', 'date_and_time', 'is_approved', 'venue', 'artist_list']
     actions = [approve_event, ]
-    fields = ['title', 'date_and_time', 'is_approved']
+    fields = ['title', 'date_and_time', 'is_approved', 'venue', 'artists']
     list_filter = ['is_approved']
 
 
+admin.site.register(User)
 admin.site.register(Artist, ArtistAdmin)
 admin.site.register(Venue, VenueAdmin)
 admin.site.register(Event, EventAdmin)

@@ -12,7 +12,9 @@
 </thead>
 <tbody>
 {% for venue in venues %}
-    <tr><td>{{ venue.name }}</td></tr>
+    <tr>
+        <td><a href="{{ venue.get_absolute_url }}" id="id_venue_name">{{ venue.name }}</a></td>
+    </tr>
 {% endfor %}
 </tbody>
 </table>

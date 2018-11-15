@@ -3,23 +3,27 @@
 {% block title %}BandFollow - Events{% endblock %}
 
 {% block content %}
-    <p><a href="{% url 'add_event' %}" id="id_add_venue">Add a new event...</a></p>
-<table id="id_list_table">
-<thead>
-    <tr>
-        <th>Event Name</th>
-        <th>Event Location</th>
-        <th>Date</th>
-    </tr>
-</thead>
-<tbody>
-{% for event in events %}
-    <tr>
-        <td>{{ event.title }}</td>
-        <td>{{ event.venue.name }}</td>
-        <td>{{ event.date_and_time|date:'F j, Y' }}</td>
-    </tr>
-{% endfor %}
-</tbody>
-</table>
+    <div class="container">
+        <p><a href="{% url 'add_event' %}" id="id_add_venue">Add a new event...</a></p>
+        <table id="id_list_table" class="table">
+            <thead>
+            <tr>
+                <th scope="col">Event Name</th>
+                <th scope="col">Event Location</th>
+                <th scope="col">Date</th>
+                <th scope="col">Artists</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for event in events %}
+                <tr>
+                    <td><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></td>
+                    <td>{{ event.venue.name }}</td>
+                    <td>{{ event.date_and_time|date:'F j, Y' }}</td>
+                    <td>{{ event.artist_list }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

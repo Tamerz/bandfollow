@@ -16,7 +16,7 @@ def artists(request):
 
 def artist_detail(request, name):
     artist = get_object_or_404(Artist, name=name)
-    return render(request, 'bands/artist_detail.html', {'artists': artist})
+    return render(request, 'bands/artist_detail.html', {'artist': artist})
 
 
 def about(request):
@@ -40,6 +40,11 @@ def venues(request):
     return render(request, 'bands/venues.html', {'venues': approved_venues})
 
 
+def venue_detail(request, name):
+    venue = get_object_or_404(Venue, name=name)
+    return render(request, 'bands/venue_detail.html', {'venue': venue})
+
+
 @login_required
 def add_venue(request):
     if request.method == 'POST':
@@ -55,6 +60,11 @@ def add_venue(request):
 def events(request):
     approved_events = Event.objects.filter(is_approved=True)
     return render(request, 'bands/events.html', {'events': approved_events})
+
+
+def event_detail(request, id):
+    event = get_object_or_404(Event, id=id)
+    return render(request, 'bands/event_detail.html', {'event': event})
 
 
 @login_required

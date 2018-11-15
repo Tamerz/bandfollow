@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}BandFollow - {{ event.title }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <p><a href="{% url 'events' %}" id="id_event_list">Go back to event list</a></p>
+    <h1>{{ event.title }}</h1>
+    </div>
+    <div class="container">
+    <table class="table">
+        <tr>
+            <th>Venue</th>
+            <td><a href="{{ event.venue.get_absolute_url }}">{{ event.venue }}</a></td>
+        </tr>
+        <tr>
+            <th>Date</th>
+            <td>{{ event.date_and_time }}</td>
+        </tr>
+        <tr>
+            <th>Artists</th>
+            {% for artist in event.artists.all %}
+                <td><a href="{{ artist.get_absolute_url }}">{{ artist.name }}</a></td>
+            {% endfor %}
+        </tr>
+    </table>
+    </div>
+{% endblock %}

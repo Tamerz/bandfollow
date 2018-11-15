@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}BandFollow - {{ venue.name }} {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <p><a href="{% url 'venues' %}" id="id_artist_list">Go back to venue list</a></p>
+        <h1 id="id_venue_name">{{ venue.name }}</h1>
+        {% if venue.website %}
+            <p>Website: <a href="{{ venue.website }}" target="_blank">{{ venue.website }}</a></p>
+        {% endif %}
+
+        <div class="container">
+            <h2>Upcoming Events</h2>
+            <table id="id_event_table" class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Artists</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for event in events %}
+                    <tr>
+                        <td>{{ event.date_and_time }}</td>
+                        <td>{{ event.artist_list }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

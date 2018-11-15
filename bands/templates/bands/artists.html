@@ -13,7 +13,7 @@
         <tbody>
         {% for artist in artists %}
             <tr>
-                <td><a href="{% url 'artist_detail' artist.name %}" id="id_artist_name">{{ artist.name }}</a></td>
+                <td><a href="{{ artist.get_absolute_url }}" id="id_artist_name">{{ artist.name }}</a></td>
             </tr>
         {% endfor %}
         </tbody>

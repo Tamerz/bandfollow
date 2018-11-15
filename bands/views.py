@@ -16,7 +16,7 @@ def artists(request):
 
 def artist_detail(request, name):
     artist = get_object_or_404(Artist, name=name)
-    return render(request, 'bands/artist_detail.html', {'artists': artist})
+    return render(request, 'bands/artist_detail.html', {'artist': artist})
 
 
 def about(request):

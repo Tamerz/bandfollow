@@ -40,6 +40,11 @@ def venues(request):
     return render(request, 'bands/venues.html', {'venues': approved_venues})
 
 
+def venue_detail(request, name):
+    venue = get_object_or_404(Venue, name=name)
+    return render(request, 'bands/venue_detail.html', {'venue': venue})
+
+
 @login_required
 def add_venue(request):
     if request.method == 'POST':

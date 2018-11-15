@@ -37,6 +37,9 @@ class Venue(models.Model):
     is_approved = models.BooleanField(default=False)
     website = models.URLField(blank=True)
 
+    def get_absolute_url(self):
+        return reverse('venue_detail', args=[str(self.name)])
+
     def __str__(self):
         return self.name
 

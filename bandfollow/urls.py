@@ -26,6 +26,7 @@ urlpatterns = [
     path('artists/<str:name>', bands_views.artist_detail, name='artist_detail'),
     path('add_artist/', bands_views.add_artist, name='add_artist'),
     path('venues/', bands_views.venues, name='venues'),
+    path('venues/<str:name>', bands_views.venue_detail, name='venue_detail'),
     path('add_venue/', bands_views.add_venue, name='add_venue'),
     path('events/', bands_views.events, name='events'),
     path('add_event/', bands_views.add_event, name='add_event'),

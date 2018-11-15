@@ -118,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Use our custom user model
-AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = 'bands.User'
 
 # Where to send the browser on successful login/logout:
 LOGIN_REDIRECT_URL = 'home'

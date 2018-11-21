@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 
@@ -58,7 +60,7 @@ def add_venue(request):
 
 
 def events(request):
-    approved_events = Event.objects.filter(is_approved=True)
+    approved_events = Event.objects.filter(is_approved=True, date_and_time__gte=datetime.today())
     return render(request, 'bands/events.html', {'events': approved_events})
 
 

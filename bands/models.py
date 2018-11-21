@@ -10,6 +10,8 @@ class User(AbstractUser):
     email = models.EmailField(max_length=100, unique=True)
     password = models.CharField(max_length=100)
     is_moderator = models.BooleanField(default=False)
+    favorite_artists = models.ManyToManyField('Artist', blank=True)
+    favorite_venues = models.ManyToManyField('Venue', blank=True)
 
     USERNAME_FIELD = 'username'
 
@@ -69,3 +71,13 @@ class Event(models.Model):
     class Meta:
         verbose_name = 'event'
         verbose_name_plural = 'events'
+
+
+class Alert(models.Model):
+
+    event = models.ForeignKey('Event', on_delete=models.PROTECT, blank=True)
+    user = models.ForeignKey('User', on_delete=models.PROTECT, blank=True)
+    has_been_sent = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.event.title} - {self.user.username}'

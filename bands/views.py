@@ -1,5 +1,8 @@
+from datetime import datetime
+
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 from bands.forms import ArtistCreationForm, VenueCreationForm, EventCreationForm
 from bands.models import Artist, Venue, Event
@@ -16,7 +19,9 @@ def artists(request):
 
 def artist_detail(request, name):
     artist = get_object_or_404(Artist, name=name)
-    return render(request, 'bands/artist_detail.html', {'artist': artist})
+    upcoming_events = Event.objects.filter(artists__event__artists=artist, date_and_time__gte=timezone.now())
+
+    return render(request, 'bands/artist_detail.html', {'artist': artist, 'events': upcoming_events})
 
 
 def about(request):
@@ -35,6 +40,20 @@ def add_artist(request):
     return render(request, 'bands/add_artist.html', {'form': ArtistCreationForm()})
 
 
+@login_required
+def set_favorite_artist(request):
+    if request.method == 'POST':
+        user = request.user
+        artist = Artist.objects.get(id=request.POST.get('artist_id'))
+        if request.POST.get('is_favorite') == 'true':
+            user.favorite_artists.add(artist)
+        else:
+            user.favorite_artists.remove(artist)
+
+        return redirect(artist)
+    return redirect('home')
+
+
 def venues(request):
     approved_venues = Venue.objects.filter(is_approved=True)
     return render(request, 'bands/venues.html', {'venues': approved_venues})
@@ -42,7 +61,23 @@ def venues(request):
 
 def venue_detail(request, name):
     venue = get_object_or_404(Venue, name=name)
-    return render(request, 'bands/venue_detail.html', {'venue': venue})
+    upcoming_events = Event.objects.filter(venue=venue, date_and_time__gte=timezone.now())
+
+    return render(request, 'bands/venue_detail.html', {'venue': venue, 'events': upcoming_events})
+
+
+@login_required
+def set_favorite_venue(request):
+    if request.method == 'POST':
+        user = request.user
+        venue = Venue.objects.get(id=request.POST.get('venue_id'))
+        if request.POST.get('is_favorite') == 'true':
+            user.favorite_venues.add(venue)
+        else:
+            user.favorite_venues.remove(venue)
+
+        return redirect(venue)
+    return redirect('home')
 
 
 @login_required
@@ -58,7 +93,7 @@ def add_venue(request):
 
 
 def events(request):
-    approved_events = Event.objects.filter(is_approved=True)
+    approved_events = Event.objects.filter(is_approved=True, date_and_time__gte=datetime.today())
     return render(request, 'bands/events.html', {'events': approved_events})
 
 

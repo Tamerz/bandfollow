@@ -2,6 +2,7 @@ from datetime import datetime
 
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 from bands.forms import ArtistCreationForm, VenueCreationForm, EventCreationForm
 from bands.models import Artist, Venue, Event
@@ -18,7 +19,9 @@ def artists(request):
 
 def artist_detail(request, name):
     artist = get_object_or_404(Artist, name=name)
-    return render(request, 'bands/artist_detail.html', {'artist': artist})
+    upcoming_events = Event.objects.filter(artists__event__artists=artist, date_and_time__gte=timezone.now())
+
+    return render(request, 'bands/artist_detail.html', {'artist': artist, 'events': upcoming_events})
 
 
 def about(request):
@@ -44,7 +47,9 @@ def venues(request):
 
 def venue_detail(request, name):
     venue = get_object_or_404(Venue, name=name)
-    return render(request, 'bands/venue_detail.html', {'venue': venue})
+    upcoming_events = Event.objects.filter(venue=venue, date_and_time__gte=timezone.now())
+
+    return render(request, 'bands/venue_detail.html', {'venue': venue, 'events': upcoming_events})
 
 
 @login_required

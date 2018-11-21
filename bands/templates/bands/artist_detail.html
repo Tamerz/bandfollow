@@ -10,7 +10,7 @@
     <div class="container">
         <p><a href="{% url 'artists' %}" id="id_artist_list">Go back to artist list</a></p>
         {% if artist in user.favorite_artists.all %}
-            <h1 id="id_artist_name"><span class="fas fa-star"></span> {{ artist.name }}</h1>
+            <a id="id_artist_name"><a href="{% url '' %}"><span class="fas fa-star"></span></a><h1>{{ artist.name }}</h1>
         {% else %}
             <h1 id="id_artist_name"><span class="far fa-star"></span> {{ artist.name }}</h1>
         {% endif %}
@@ -30,7 +30,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for event in artist.event_set.all %}
+                {% for event in events %}
                     <tr>
                         <td><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></td>
                         <td>{{ event.date_and_time }}</td>

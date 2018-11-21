@@ -9,11 +9,21 @@
 {% block content %}
     <div class="container">
         <p><a href="{% url 'artists' %}" id="id_artist_list">Go back to artist list</a></p>
-        {% if artist in user.favorite_artists.all %}
-            <a id="id_artist_name"><a href="{% url '' %}"><span class="fas fa-star"></span></a><h1>{{ artist.name }}</h1>
-        {% else %}
-            <h1 id="id_artist_name"><span class="far fa-star"></span> {{ artist.name }}</h1>
-        {% endif %}
+
+        <form id="id_set_favorite" action="{% url 'set_favorite_artist' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" value="{{ artist.id }}" name="artist_id">
+            {% if artist in user.favorite_artists.all %}
+                <span class="fas fa-star"></span><h1>{{ artist.name }}</h1>
+                <input type="hidden" value="false" name="is_favorite">
+                <button class="btn btn-primary" type="submit">Remove from Favorite Artists</button>
+            {% else %}
+                <span class="far fa-star"></span><h1>{{ artist.name }}</h1>
+                <input type="hidden" value="true" name="is_favorite">
+                <button class="btn btn-primary" type="submit">Add to Favorite Artists</button>
+            {% endif %}
+
+        </form>
 
         {% if artist.website %}
             <p>Website: <a href="{{ artist.website }}" target="_blank">{{ artist.website }}</a></p>
@@ -41,7 +51,4 @@
             </table>
         </div>
     </div>
-    {% block extra_scripts %}
-        <script src="{% static 'js/favorite.js' %}"></script>
-    {% endblock %}
 {% endblock %}

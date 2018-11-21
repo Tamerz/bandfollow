@@ -9,6 +9,21 @@
 {% block content %}
     <div class="container">
         <p><a href="{% url 'venues' %}" id="id_artist_list">Go back to venue list</a></p>
+
+        <form id="id_set_favorite" action="{% url 'set_favorite_venue' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" value="{{ venue.id }}" name="venue_id">
+            {% if venue in user.favorite_venues.all %}
+                <span class="fas fa-star"></span><h1>{{ venue.name }}</h1>
+                <input type="hidden" value="false" name="is_favorite">
+                <button class="btn btn-primary" type="submit">Remove from Favorite Venues</button>
+            {% else %}
+                <span class="far fa-star"></span><h1>{{ venue.name }}</h1>
+                <input type="hidden" value="true" name="is_favorite">
+                <button class="btn btn-primary" type="submit">Add to Favorite Venues</button>
+            {% endif %}
+        </form>
+
         {% if venue in user.favorite_venues.all %}
             <h1 id="id_artist_name"><span class="fas fa-star"></span> {{ venue.name }}</h1>
         {% else %}

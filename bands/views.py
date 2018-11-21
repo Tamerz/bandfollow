@@ -40,6 +40,20 @@ def add_artist(request):
     return render(request, 'bands/add_artist.html', {'form': ArtistCreationForm()})
 
 
+@login_required
+def set_favorite_artist(request):
+    if request.method == 'POST':
+        user = request.user
+        artist = Artist.objects.get(id=request.POST.get('artist_id'))
+        if request.POST.get('is_favorite') == 'true':
+            user.favorite_artists.add(artist)
+        else:
+            user.favorite_artists.remove(artist)
+
+        return redirect(artist)
+    return redirect('home')
+
+
 def venues(request):
     approved_venues = Venue.objects.filter(is_approved=True)
     return render(request, 'bands/venues.html', {'venues': approved_venues})
@@ -50,6 +64,20 @@ def venue_detail(request, name):
     upcoming_events = Event.objects.filter(venue=venue, date_and_time__gte=timezone.now())
 
     return render(request, 'bands/venue_detail.html', {'venue': venue, 'events': upcoming_events})
+
+
+@login_required
+def set_favorite_venue(request):
+    if request.method == 'POST':
+        user = request.user
+        venue = Venue.objects.get(id=request.POST.get('venue_id'))
+        if request.POST.get('is_favorite') == 'true':
+            user.favorite_venues.add(venue)
+        else:
+            user.favorite_venues.remove(venue)
+
+        return redirect(venue)
+    return redirect('home')
 
 
 @login_required

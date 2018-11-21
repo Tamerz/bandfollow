@@ -10,24 +10,28 @@
     <div class="container">
         <p><a href="{% url 'artists' %}" id="id_artist_list">Go back to artist list</a></p>
 
-        <form id="id_set_favorite" action="{% url 'set_favorite_artist' %}" method="post">
-            {% csrf_token %}
-            <input type="hidden" value="{{ artist.id }}" name="artist_id">
-            {% if artist in user.favorite_artists.all %}
-                <span class="fas fa-star"></span><h1>{{ artist.name }}</h1>
-                <input type="hidden" value="false" name="is_favorite">
-                <button class="btn btn-primary" type="submit">Remove from Favorite Artists</button>
-            {% else %}
-                <span class="far fa-star"></span><h1>{{ artist.name }}</h1>
-                <input type="hidden" value="true" name="is_favorite">
-                <button class="btn btn-primary" type="submit">Add to Favorite Artists</button>
-            {% endif %}
-
-        </form>
+        <div class="row">
+            <div class="col"><h1>{{ artist.name }}</h1></div>
+            <div class="col">
+                <form id="id_set_favorite" action="{% url 'set_favorite_artist' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{ artist.id }}" name="artist_id">
+                    {% if artist in user.favorite_artists.all %}
+                        <input type="hidden" value="false" name="is_favorite">
+                        <button class="btn btn-primary" type="submit">Remove from Favorite Artists</button>
+                    {% else %}
+                        <input type="hidden" value="true" name="is_favorite">
+                        <button class="btn btn-primary" type="submit">Add to Favorite Artists</button>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
 
         {% if artist.website %}
             <p>Website: <a href="{{ artist.website }}" target="_blank">{{ artist.website }}</a></p>
         {% endif %}
+
+
 
         <div class="container">
             <h2>Upcoming Events</h2>

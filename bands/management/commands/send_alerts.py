@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 
-from bands.models import Event
+from bands.models import Event, Alert
 
 User = get_user_model()
 
@@ -27,4 +27,11 @@ class Command(BaseCommand):
                         break
 
                 if venue_match and artist_match:
-                    print('{} wants {}'.format(user.username, event.title))
+                    alert = Alert.objects.get_or_create(event=event, user=user)
+                    print(alert)
+                    if alert.been_sent:
+                        print('{} wants {} but it has already been sent'.format(user.username, event.title))
+                    else:
+                        print('{} wants {}'.format(user.username, event.title))
+                        alert.been_sent = True
+                        alert.save()

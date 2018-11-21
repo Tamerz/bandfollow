@@ -71,3 +71,13 @@ class Event(models.Model):
     class Meta:
         verbose_name = 'event'
         verbose_name_plural = 'events'
+
+
+class Alert(models.Model):
+
+    event = models.ForeignKey('Event', on_delete=models.PROTECT, blank=True)
+    user = models.ForeignKey('User', on_delete=models.PROTECT, blank=True)
+    has_been_sent = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.event.title} - {self.user.username}'

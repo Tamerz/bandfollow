@@ -1,11 +1,20 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}BandFollow - {{ artist.name }} {% endblock %}
+{% block extra_head_tags %}
+    <link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">
+{% endblock %}
 
 {% block content %}
     <div class="container">
         <p><a href="{% url 'artists' %}" id="id_artist_list">Go back to artist list</a></p>
-        <h1 id="id_artist_name">{{ artist.name }}</h1>
+        {% if artist in user.favorite_artists.all %}
+            <h1 id="id_artist_name"><span class="fas fa-star"></span> {{ artist.name }}</h1>
+        {% else %}
+            <h1 id="id_artist_name"><span class="far fa-star"></span> {{ artist.name }}</h1>
+        {% endif %}
+
         {% if artist.website %}
             <p>Website: <a href="{{ artist.website }}" target="_blank">{{ artist.website }}</a></p>
         {% endif %}
@@ -32,4 +41,7 @@
             </table>
         </div>
     </div>
+    {% block extra_scripts %}
+        <script src="{% static 'js/favorite.js' %}"></script>
+    {% endblock %}
 {% endblock %}

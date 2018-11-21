@@ -1,11 +1,19 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block extra_head_tags %}
+    <link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">
+{% endblock %}
 
 {% block title %}BandFollow - {{ venue.name }} {% endblock %}
 
 {% block content %}
     <div class="container">
         <p><a href="{% url 'venues' %}" id="id_artist_list">Go back to venue list</a></p>
-        <h1 id="id_venue_name">{{ venue.name }}</h1>
+        {% if venue in user.favorite_venues.all %}
+            <h1 id="id_artist_name"><span class="fas fa-star"></span> {{ venue.name }}</h1>
+        {% else %}
+            <h1 id="id_artist_name"><span class="far fa-star"></span> {{ venue.name }}</h1>
+        {% endif %}
         {% if venue.website %}
             <p>Website: <a href="{{ venue.website }}" target="_blank">{{ venue.website }}</a></p>
         {% endif %}
@@ -32,4 +40,7 @@
             </table>
         </div>
     </div>
+    {% block extra_scripts %}
+        <script src="{% static 'js/favorite.js' %}"></script>
+    {% endblock %}
 {% endblock %}

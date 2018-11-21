@@ -10,6 +10,8 @@ class User(AbstractUser):
     email = models.EmailField(max_length=100, unique=True)
     password = models.CharField(max_length=100)
     is_moderator = models.BooleanField(default=False)
+    favorite_artists = models.ManyToManyField('Artist', blank=True)
+    favorite_venues = models.ManyToManyField('Venue', blank=True)
 
     USERNAME_FIELD = 'username'
 

@@ -1,10 +1,21 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
 from django.utils import timezone
+from django.core.mail import send_mail
 
 from bands.models import Event, Alert
 
 User = get_user_model()
+
+
+def send_email_alert(event, user):
+    send_mail(
+        subject='BandFollow - New Matching Event',
+        message=f'Hello {user.username}, a new matching event has been found for you: '
+        f'{event.title}: https://bandfollow.com{event.get_absolute_url()}',
+        from_email='BandFollow Alerts <noreply@bandfollow.com>',
+        recipient_list=[f'{user.email}']
+    )
 
 
 class Command(BaseCommand):
@@ -27,11 +38,8 @@ class Command(BaseCommand):
                         break
 
                 if venue_match and artist_match:
-                    alert = Alert.objects.get_or_create(event=event, user=user)
-                    print(alert)
-                    if alert.been_sent:
-                        print('{} wants {} but it has already been sent'.format(user.username, event.title))
-                    else:
-                        print('{} wants {}'.format(user.username, event.title))
-                        alert.been_sent = True
+                    alert = Alert.objects.get_or_create(event=event, user=user)[0]
+                    if not alert.has_been_sent:
+                        send_email_alert(event, user)
+                        alert.has_been_sent = True
                         alert.save()

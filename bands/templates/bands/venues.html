@@ -3,7 +3,9 @@
 {% block title %}BandFollow - Venues{% endblock %}
 
 {% block content %}
-    <p><a href="{% url 'add_venue' %}" id="id_add_venue">Add a new venue...</a></p>
+    <p><a href="{% url 'add_venue' %}" id="id_add_venue">
+        <button class="btn btn-primary" type="button">Add a New Venue...</button>
+    </a></p>
 <table id="id_list_table">
 <thead>
     <tr>

@@ -4,7 +4,9 @@
 
 {% block content %}
     <div class="container">
-        <p><a href="{% url 'add_event' %}" id="id_add_venue">Add a new event...</a></p>
+        <p><a href="{% url 'add_event' %}" id="id_add_venue">
+            <button class="btn btn-primary" type="button">Add a New Event...</button>
+        </a></p>
         <table id="id_list_table" class="table">
             <thead>
             <tr>

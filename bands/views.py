@@ -1,8 +1,10 @@
 from datetime import datetime
+from itertools import chain
 
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from django.db import models
 
 from bands.forms import ArtistCreationForm, VenueCreationForm, EventCreationForm
 from bands.models import Artist, Venue, Event
@@ -115,3 +117,19 @@ def add_event(request):
             return render(request, 'bands/add_event.html', {'form': new_event_form})
 
     return render(request, 'bands/add_event.html', {'form': EventCreationForm()})
+
+
+def search(request):
+    search_query = request.GET.get('search_query')
+
+    artists = Artist.objects.filter(name__contains=search_query)
+    venues = Venue.objects.filter(name__contains=search_query)
+    events = Event.objects.filter(title__contains=search_query)
+
+    if len(artists) + len(venues) + len(events) > 0:
+        results_found = True
+    else:
+        results_found = False
+
+    return render(request, 'bands/search.html', {'artists': artists, 'venues': venues, 'events': events,
+                                                 'results_found': results_found})

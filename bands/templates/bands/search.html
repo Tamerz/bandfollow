@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}BandFollow - Search{% endblock %}
+{% block content %}
+
+    <h1>Search Results</h1>
+
+    {% if results_found %}
+
+    {% if artists %}
+    <h2>Artists</h2>
+    <ul>
+    {% for artist in artists %}
+        <li><a  href="{{ artist.get_absolute_url }}">{{ artist.name }}</a></li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% if venues %}
+    <h2>Venues</h2>
+    <ul>
+    {% for venue in venues %}
+        <li><a  href="{{ venue.get_absolute_url }}">{{ venue.name }}</a></li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% if events %}
+    <h2>Events</h2>
+    <ul>
+    {% for event in events %}
+        <li><a  href="{{ event.get_absolute_url }}">{{ event.title }}</a></li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% else %}
+        <h2>Sorry, no results were found.</h2>
+    {% endif %}
+{% endblock %}

@@ -36,5 +36,6 @@ urlpatterns = [
     path('about/', bands_views.about, name='about'),
     path('admin/', admin.site.urls),
     path('create_account/', accounts_views.create_account, name='create_account'),
+    path('search/', bands_views.search, name='search'),
     path('accounts/', include('django.contrib.auth.urls')),
 ]

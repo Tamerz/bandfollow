@@ -4,8 +4,6 @@
 # Images should not be checked into Git
 static/images/
 
-runtime.txt
-
 # Static root file directory
 /static_root/
 

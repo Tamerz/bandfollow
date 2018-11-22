@@ -19,7 +19,9 @@ def artists(request):
 
 def artist_detail(request, name):
     artist = get_object_or_404(Artist, name=name)
-    upcoming_events = Event.objects.filter(artists__event__artists=artist, date_and_time__gte=timezone.now())
+    upcoming_events = Event.objects.filter(artists__event__artists=artist, date_and_time__gte=timezone.now()).distinct()
+
+    print(upcoming_events)
 
     return render(request, 'bands/artist_detail.html', {'artist': artist, 'events': upcoming_events})
 

@@ -3,7 +3,11 @@
 {% block title %}BandFollow - Artists{% endblock %}
 
 {% block content %}
-    <p><a href="{% url 'add_artist' %}" id="id_add_artist">Add a new artist...</a></p>
+
+    <p><a href="{% url 'add_artist' %}" id="id_add_artist">
+        <button class="btn btn-primary" type="button">Add a New Artist...</button>
+    </a></p>
+    <h2>Artist List</h2>
     <table id="id_list_table">
         <thead>
         <tr>

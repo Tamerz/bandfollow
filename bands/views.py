@@ -58,6 +58,19 @@ def set_favorite_artist(request):
     return redirect('home')
 
 
+@login_required
+def approve_artists(request):
+    user = request.user
+    if not user.is_moderator:
+        return render(request, 'bands/access_denied.html')
+
+    unapproved_artists = Artist.objects.filter(is_approved=False)
+
+    return render(request, 'bands/approve_artists.html', {'unapproved_artists': unapproved_artists})
+
+
+
+
 def venues(request):
     approved_venues = Venue.objects.filter(is_approved=True)
     return render(request, 'bands/venues.html', {'venues': approved_venues})

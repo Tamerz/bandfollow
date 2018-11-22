@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}BandFollow - Approve Artists{% endblock %}
+
+{% block content %}
+    <h2>Unapproved Artists</h2>
+
+    {% if unapproved_artists %}
+    <ul>
+    {% for artist in unapproved_artists %}
+        <li><a href="{{ artist.get_absolute_url }}">{{ artist.name }}</a></li>
+    {% endfor %}
+    </ul>
+    {% else %}
+        <h3>There are currently no artists to approve. Please check again later.</h3>
+    {% endif %}
+{% endblock %}

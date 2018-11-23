@@ -19,3 +19,10 @@ $ docker-compose run web python3 manage.py migrate
 
 Once it brings up the two machines, you should be able to browse to
 <http://127.0.0.1:8000> on your local machine.
+
+Image sources:
+Icons from the Noun project:
+ *** add event by Aneeque Ahmed 
+ *** sign up by anon
+ *** musician by corpus delicti
+ *** Map by Anton Kovalev

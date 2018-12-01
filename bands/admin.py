@@ -26,17 +26,17 @@ def approve_event(modeladmin, request, queryset):
 
 class ArtistAdmin(admin.ModelAdmin):
 
-    list_display = ['name', 'is_approved']
+    list_display = ['name', 'website', 'is_approved']
     actions = [approve_artist, ]
-    fields = ['name', 'is_approved']
+    fields = ['name', 'website', 'is_approved']
     list_filter = ['is_approved']
 
 
 class VenueAdmin(admin.ModelAdmin):
 
-    list_display = ['name', 'is_approved']
+    list_display = ['name', 'website', 'is_approved']
     actions = [approve_venue, ]
-    fields = ['name', 'is_approved']
+    fields = ['name', 'website', 'is_approved']
     list_filter = ['is_approved']
 
 

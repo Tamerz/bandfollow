@@ -4,3 +4,4 @@ django-heroku==0.3.1
 django-crispy-forms==1.7.2
 gunicorn==19.9.0
 django-anymail==4.3
+django-import-export

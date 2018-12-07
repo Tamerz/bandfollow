@@ -39,4 +39,5 @@ urlpatterns = [
     path('search/', bands_views.search, name='search'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('approve_artists/', bands_views.approve_artists, name='approve_artists'),
+    path('activate/<uidb64>/<token>', accounts_views.activate, name='activate'),
 ]

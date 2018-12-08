@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'import_export',
     'bands.apps.BandsConfig',
     'accounts.apps.AccountsConfig',
 ]

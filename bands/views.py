@@ -15,7 +15,7 @@ def home_page(request):
 
 
 def artists(request):
-    approved_artists = Artist.objects.filter(is_approved=True)
+    approved_artists = Artist.objects.filter(is_approved=True).order_by('name')
     return render(request, 'bands/artists.html', {'artists': approved_artists})
 
 
@@ -70,7 +70,7 @@ def approve_artists(request):
 
 
 def venues(request):
-    approved_venues = Venue.objects.filter(is_approved=True)
+    approved_venues = Venue.objects.filter(is_approved=True).order_by('name')
     return render(request, 'bands/venues.html', {'venues': approved_venues})
 
 

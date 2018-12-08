@@ -69,8 +69,6 @@ def approve_artists(request):
     return render(request, 'bands/approve_artists.html', {'unapproved_artists': unapproved_artists})
 
 
-
-
 def venues(request):
     approved_venues = Venue.objects.filter(is_approved=True)
     return render(request, 'bands/venues.html', {'venues': approved_venues})
@@ -135,9 +133,9 @@ def add_event(request):
 def search(request):
     search_query = request.GET.get('search_query')
 
-    artists = Artist.objects.filter(name__contains=search_query)
-    venues = Venue.objects.filter(name__contains=search_query)
-    events = Event.objects.filter(title__contains=search_query)
+    artists = Artist.objects.filter(name__icontains=search_query)
+    venues = Venue.objects.filter(name__icontains=search_query)
+    events = Event.objects.filter(title__icontains=search_query)
 
     if len(artists) + len(venues) + len(events) > 0:
         results_found = True

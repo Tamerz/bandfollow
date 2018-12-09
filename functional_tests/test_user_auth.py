@@ -1,3 +1,5 @@
+import time
+
 from .base import FunctionalTest
 
 
@@ -15,11 +17,8 @@ class NewUserTest(FunctionalTest):
         # There is also a header with BandFollow
         self.assertIn('BandFollow', self.browser.find_element_by_tag_name('h1').text)
 
-        # He clicks the 'More' menu button to bring down the options
-        self.browser.find_element_by_id('navbarDropdown').click()
-
         # There is a link to create an account. He clicks it.
-        create_account_link = self.browser.find_element_by_id('id_create_account')
+        create_account_link = self.browser.find_element_by_id('id_sign_up')
         self.assertEqual(create_account_link.text, 'Sign Up')
         create_account_link.click()
 
@@ -30,15 +29,16 @@ class NewUserTest(FunctionalTest):
         # There is a form asking for user details. He fills it out with his information.
         self.browser.find_element_by_id('id_username').send_keys('jjazz')
         self.browser.find_element_by_id('id_name').send_keys('Jimmy Jazz')
-        self.browser.find_element_by_id('id_email').send_keys('jimmy.jazz@coolguy.com')
+        self.browser.find_element_by_id('id_email').send_keys('jimmy.jazz@tamerz.com')
         self.browser.find_element_by_id('id_password1').send_keys('youneverknow8')
         self.browser.find_element_by_id('id_password2').send_keys('youneverknow8')
 
         # He then sees the submit button and clicks it
         self.browser.find_element_by_id('submit-id-submit').click()
 
-        # Since he put in all correct values, it redirects him to the home page
-        self.assertEqual(self.browser.current_url, f'{self.live_server_url}/')
+        # He now sees that he needs to click a link in his email to confirm it is valid
+        page_text = self.browser.find_element_by_tag_name('body').text
+        self.assertEqual(page_text, 'Please confirm your email address to complete the registration')
 
     def test_can_login(self):
         # New tests create new databases, so we need to create Jimmy again with
@@ -48,10 +48,9 @@ class NewUserTest(FunctionalTest):
         # He goes back to the main site
         self.browser.get(self.live_server_url)
 
-        # He clicks the account menu button to bring down the options
-        self.browser.find_element_by_id('navbarDropdown').click()
+        # He clicks the "Log In" button
         login_link = self.browser.find_element_by_id('id_login')
-        self.assertEqual(login_link.text, 'Login')
+        self.assertEqual(login_link.text, 'Log In')
         login_link.click()
 
         # He is now at the login page
@@ -65,7 +64,7 @@ class NewUserTest(FunctionalTest):
         # He click the login button
         self.browser.find_element_by_id('id_submit').click()
 
-        # He is redirected to the home page and sees his user name in the corner.
+        # He is redirected to the home page and sees a "Log Out" link.
         self.assertEqual(f'{self.live_server_url}/', self.browser.current_url)
-        username_link= self.browser.find_element_by_id('id_username_link')
-        self.assertEqual('jjazz', username_link.text)
+        log_out_link = self.browser.find_element_by_id('id_log_out')
+        self.assertEqual('Log Out', log_out_link.text)

@@ -8,7 +8,7 @@
         <p><a href="{% url 'artists' %}" id="id_artist_list">Go back to artist list</a></p>
 
         <div class="row">
-            <div class="col"><h1>{{ artist.name }}</h1></div>
+            <div class="col"><h1 id="id_artist_name">{{ artist.name }}</h1></div>
             <div class="col">
                 <form id="id_set_favorite" action="{% url 'set_favorite_artist' %}" method="post">
                     {% csrf_token %}
@@ -18,7 +18,9 @@
                         <button class="btn btn-primary" type="submit">Remove from Favorite Artists</button>
                     {% else %}
                         <input type="hidden" value="true" name="is_favorite">
-                        <button class="btn btn-primary" type="submit">Add to Favorite Artists</button>
+                        <button id="id_artist_favorite" class="btn btn-primary" type="submit">
+                            Add to Favorite Artists
+                        </button>
                     {% endif %}
                 </form>
             </div>

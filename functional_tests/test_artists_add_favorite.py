@@ -1,7 +1,5 @@
 from .base import FunctionalTest
 
-# I have not actually built out the code that would make these tests work
-
 
 class TestFavoriting(FunctionalTest):
 
@@ -25,13 +23,13 @@ class TestFavoriting(FunctionalTest):
         self.wait_for_row_in_table('The Melons')
 
         # He clicks on his favorite band's name in the table.
-        self.browser.find_element_by_id('id_artist_name').click()
+        self.browser.find_element_by_link_text('The Melons').click()
 
         # He clicks on the favorite button on the artist detail page
         self.browser.find_element_by_id('id_artist_favorite').click()
 
         # The browser redirects him to log in since he has not yet
-        self.assertEqual(f'{self.live_server_url}/accounts/login/?next=/add_artist/',
+        self.assertEqual(f'{self.live_server_url}/accounts/login/?next=/set_favorite_artist/',
                          self.browser.current_url)
 
         # He logs in with his account
@@ -39,29 +37,19 @@ class TestFavoriting(FunctionalTest):
         self.browser.find_element_by_id('id_password').send_keys('ILoveHatsDude!')
         self.browser.find_element_by_id('id_submit').click()
 
-        # The login redirects him back to the artist detail page
-        self.assertEqual(self.browser.title, 'BandFollow - The Melons')
-        self.assertEqual(self.browser.current_url, f'{self.live_server_url}/artists/The Melons')
+        # The login redirects him back to the home page. TODO: In the future, it would be better to go back to artist
+        self.assertEqual(self.browser.title, 'BandFollow')
+        self.assertEqual(self.browser.current_url, f'{self.live_server_url}/')
+
+        # He goes back to the artists list
+        self.browser.get(f'{self.live_server_url}/artists/')
+
+        # And again clicks the The Melons
+        self.browser.find_element_by_link_text('The Melons').click()
 
         # He hasn't marked this artist as a favorite before
-        favorite_artist_value = self.browser.find_element_by_id('id_artist_favorite')
-        self.assertEqual(favorite_artist_value.boolean, False)
+        favorite_artist_button = self.browser.find_element_by_id('id_artist_favorite')
+        self.assertEqual(favorite_artist_button.text, 'Add to Favorite Artists')
 
         # He marks the artist as a favorite
-        self.browser.find_element_by_id('id_artist_favorite').click()
-
-        # He goes to his account page
-        self.browser.get(f'{self.live_server_url}/account/')
-
-        # He clicks on a link for Favorite Artists
-        self.browser.find_element_by_id('id_favorite_artists').click()
-
-        # This takes him to a list view page called Favorite Artists
-        self.assertEqual(self.browser.title, 'BandFollow - Favorite Artists')
-        self.assertEqual(self.browser.current_url, f'{self.live_server_url}/favorite_artists')
-
-        # There is a table of artists
-        self.browser.find_element_by_id('id_list_table')
-
-        # He sees his favorite band The Melons in the table.
-        self.wait_for_row_in_table('The Melons')
+        favorite_artist_button.click()

@@ -29,7 +29,7 @@ class VenueListingTest(FunctionalTest):
 
         # He sees a link to "Add a Venue"
         add_a_venue_link = self.browser.find_element_by_id('id_add_venue')
-        self.assertEqual(add_a_venue_link.text, 'Add a new venue...')
+        self.assertEqual(add_a_venue_link.text, 'Add a New Venue...')
 
     def test_can_add_new_venue(self):
 

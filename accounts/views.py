@@ -47,9 +47,9 @@ def create_account(request):
                 'token': account_activation_token.make_token(user),
             })
             to_email = new_user_form.cleaned_data.get('email')
-            print('UID: {}'.format(urlsafe_base64_encode(force_bytes(user.pk))))
             email = EmailMessage(mail_subject, message, to=[to_email])
-            email.send()
+            if to_email != 'jimmy.jazz@tamerz.com':  # Don't send emails to this test user
+                email.send()
 
             return HttpResponse('Please confirm your email address to complete the registration')
         else:

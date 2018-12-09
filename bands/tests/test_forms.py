@@ -27,11 +27,13 @@ class VenueCreationFormTest(TestCase):
 class EventCreationFormTest(TestCase):
 
     def test_form_saves_event(self):
-        venue = Venue.objects.get_or_create(name='Chill Jazz Club')
+        venue = Venue.objects.get_or_create(name='Chill Jazz Club')[0]
+        artist = Artist.objects.get_or_create(name='Jazz Legends')[0]
         form = EventCreationForm(data={
             'title': 'Big Night Out!',
-            'time_and_date': datetime(2019, 3, 22, 18, 30, tzinfo=timezone.utc),
-            'venue': venue
+            'date_and_time': datetime(2019, 3, 22, 18, 30, tzinfo=timezone.utc),
+            'venue': venue.id,
+            'artists': [artist.id]
         })
         new_event = form.save()
         self.assertEqual(new_event, Event.objects.first())

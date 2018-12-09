@@ -41,14 +41,14 @@
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                    <a id="id_log_out" class="nav-link" href="{% url 'logout' %}">Log Out</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'create_account' %}">Sign Up</a>
+                    <a id="id_sign_up" class="nav-link" href="{% url 'create_account' %}">Sign Up</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                    <a id="id_login" class="nav-link" href="{% url 'login' %}">Log In</a>
                 </li>
                 {% endif %}
             </ul>

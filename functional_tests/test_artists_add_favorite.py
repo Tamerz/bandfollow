@@ -1,7 +1,5 @@
 from .base import FunctionalTest
 
-# I have not actually built out the code that would make these tests work
-
 
 class TestFavoriting(FunctionalTest):
 
@@ -31,7 +29,7 @@ class TestFavoriting(FunctionalTest):
         self.browser.find_element_by_id('id_artist_favorite').click()
 
         # The browser redirects him to log in since he has not yet
-        self.assertEqual(f'{self.live_server_url}/accounts/login/?next=/add_artist/',
+        self.assertEqual(f'{self.live_server_url}/accounts/login/?next=/set_favorite_artist/',
                          self.browser.current_url)
 
         # He logs in with his account

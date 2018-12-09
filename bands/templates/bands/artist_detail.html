@@ -18,7 +18,9 @@
                         <button class="btn btn-primary" type="submit">Remove from Favorite Artists</button>
                     {% else %}
                         <input type="hidden" value="true" name="is_favorite">
-                        <button class="btn btn-primary" type="submit">Add to Favorite Artists</button>
+                        <button id="id_artist_favorite" class="btn btn-primary" type="submit">
+                            Add to Favorite Artists
+                        </button>
                     {% endif %}
                 </form>
             </div>

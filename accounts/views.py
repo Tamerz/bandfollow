@@ -50,8 +50,6 @@ def create_account(request):
             email = EmailMessage(mail_subject, message, to=[to_email])
             if to_email != 'jimmy.jazz@tamerz.com':  # Don't send emails to this test user
                 email.send()
-            else:
-                print('Not sending to test user jimmy.jazz@tamerz.com')
 
             return HttpResponse('Please confirm your email address to complete the registration')
         else:

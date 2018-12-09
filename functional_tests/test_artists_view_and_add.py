@@ -26,9 +26,9 @@ class ArtistListingTest(FunctionalTest):
         # His second favorite band is local and less known, and is not currently in the list
         self.wait_for_row_in_table('Big Grant', inverse=True)
 
-        # He sees a link to "Add an Artist"
+        # He sees a link to "Add a New Artist"
         add_an_artist_link = self.browser.find_element_by_id('id_add_artist')
-        self.assertEqual(add_an_artist_link.text, 'Add a new artist...')
+        self.assertEqual(add_an_artist_link.text, 'Add a New Artist...')
 
     def test_can_add_new_artist(self):
         # We need to create Bill's account for the test database
